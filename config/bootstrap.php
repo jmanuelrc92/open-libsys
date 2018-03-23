@@ -216,3 +216,14 @@ if (Configure::read('debug')) {
 }
 
 Plugin::load('Migrations');
+Plugin::load('AdminLTE', ['bootstrap' => true, 'routes' => true]);
+
+Configure::write('Theme', [
+    'title' => 'OpenLibrarySystem',
+    'logo' => [
+        'mini' => '<b>O</b>Lib',
+        'large' => '<b>Open</b>Library'
+    ],
+    'skin' => 'blue',
+    'folder' => ROOT
+]);
