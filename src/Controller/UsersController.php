@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 use App\AppLogic\Configuration\Templates;
 use Cake\ORM\TableRegistry;
 
@@ -140,6 +139,12 @@ class UsersController extends AppController
                 $this->Flash->error(__('Username or password is incorrect'));
             }
         }
+    }
+    
+    public function logout()
+    {
+        $this->Flash->success('You are now logged out');
+        return $this->redirect($this->Auth->logout());
     }
     
 }
