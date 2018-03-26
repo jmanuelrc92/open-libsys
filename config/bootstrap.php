@@ -227,3 +227,4 @@ Configure::write('Theme', [
     'skin' => 'blue',
     'folder' => ROOT
 ]);
+

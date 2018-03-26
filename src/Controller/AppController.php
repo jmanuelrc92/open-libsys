@@ -55,14 +55,19 @@ class AppController extends Controller
                     'fields' => [
                         'username' => 'username',
                         'password' => 'password'
-                    ]
+                    ],
+                    'finder' => 'AuthUser'
                 ]
             ],
             'loginAction' => [
                 'controller' => 'users',
                 'action' => 'login'
             ],
-            'storage' => 'Session'
+            'storage' => 'Session',
+            'authorize' => [
+                'OpenLib'
+            ],
+            'unauthorizedRedirect' => $this->referer()
         ]);
     }
     
@@ -70,5 +75,10 @@ class AppController extends Controller
     {
         $this->viewBuilder()->setTheme('AdminLTE');
         $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
+    }
+    
+    public function isAuthorized($user)
+    {
+        return false;
     }
 }
