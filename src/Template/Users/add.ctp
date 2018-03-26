@@ -5,7 +5,7 @@
  */
 ?>
 <header class="content-header">
-	<h1>Usuarios</h1>
+	<h1>Users</h1>
 	breadcrumb
 </header>
 <section class="content table-responsive">
