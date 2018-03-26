@@ -25,4 +25,5 @@ class CreateUsers extends AbstractMigration
         
         $table->create();
     }
+    
 }
