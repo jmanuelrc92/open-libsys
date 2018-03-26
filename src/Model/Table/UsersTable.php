@@ -98,4 +98,10 @@ class UsersTable extends Table
 
         return $rules;
     }
+    
+    public function findAuthUser (Query $query, $options)
+    {
+        return $query->contain(['Roles']);
+    }
+    
 }
