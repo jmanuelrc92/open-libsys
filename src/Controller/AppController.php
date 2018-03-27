@@ -75,10 +75,12 @@ class AppController extends Controller
     {
         $this->viewBuilder()->setTheme('AdminLTE');
         $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
-    }
-    
-    public function isAuthorized($user)
-    {
-        return false;
+        
+        $user = $this->Auth->user();
+        if (!is_null($user)) {
+            $personName = $user['person']['first_name'].' '.$user['person']['last_name'];
+            $this->set('personName', $personName);
+            $this->set('registrationDate', $user['created']);
+        }
     }
 }
