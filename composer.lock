@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "58f411742b5affe7c692831b786c8b3c",
+    "content-hash": "0cfbf86c77a911aeac176bc902886a2e",
     "packages": [
         {
             "name": "aura/intl",
@@ -548,6 +548,63 @@
                 "php mobile detect"
             ],
             "time": "2018-02-26T19:39:55+00:00"
+        },
+        {
+            "name": "muffin/trash",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UseMuffin/Trash.git",
+                "reference": "715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UseMuffin/Trash/zipball/715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2",
+                "reference": "715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/orm": "^3.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^3.0",
+                "phpunit/phpunit": "<6.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Muffin\\Trash\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/usemuffin/trash/graphs/contributors"
+                }
+            ],
+            "description": "Adds soft delete support to CakePHP 3 ORM tables.",
+            "homepage": "https://github.com/usemuffin/trash",
+            "keywords": [
+                "cakephp",
+                "muffin",
+                "orm",
+                "trash"
+            ],
+            "time": "2017-10-10T13:02:55+00:00"
         },
         {
             "name": "psr/http-message",
