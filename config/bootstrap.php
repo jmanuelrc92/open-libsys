@@ -228,3 +228,5 @@ Configure::write('Theme', [
     'folder' => ROOT
 ]);
 
+
+Plugin::load('Muffin/Trash');
