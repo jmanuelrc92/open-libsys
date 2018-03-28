@@ -18,8 +18,8 @@ class CreatePeople extends AbstractMigration
         ->addColumn('middle_name', 'string', ['limit' => 50])
         ->addColumn('last_name', 'string', ['limit' => 50])
         ->addColumn('sur_name', 'string', ['limit' => 50])
-        ->addColumn('created', 'string', ['limit' => 50])
-        ->addColumn('modified', 'string', ['limit' => 50]);
+        ->addColumn('created', 'datetime')
+        ->addColumn('modified', 'datetime');
         
         $table->create();
     }
