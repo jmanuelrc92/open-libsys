@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1401f12a0ac4603012580dc43a7846e7",
+    "content-hash": "0cfbf86c77a911aeac176bc902886a2e",
     "packages": [
         {
             "name": "aura/intl",
@@ -290,6 +290,56 @@
             "time": "2017-12-24T21:09:29+00:00"
         },
         {
+            "name": "fzaninotto/faker",
+            "version": "v1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
+                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "^4.0 || ^5.0",
+                "squizlabs/php_codesniffer": "^1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2017-08-15T16:48:10+00:00"
+        },
+        {
             "name": "josegonzalez/dotenv",
             "version": "2.1.0",
             "source": {
@@ -498,6 +548,63 @@
                 "php mobile detect"
             ],
             "time": "2018-02-26T19:39:55+00:00"
+        },
+        {
+            "name": "muffin/trash",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UseMuffin/Trash.git",
+                "reference": "715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UseMuffin/Trash/zipball/715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2",
+                "reference": "715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/orm": "^3.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^3.0",
+                "phpunit/phpunit": "<6.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Muffin\\Trash\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/usemuffin/trash/graphs/contributors"
+                }
+            ],
+            "description": "Adds soft delete support to CakePHP 3 ORM tables.",
+            "homepage": "https://github.com/usemuffin/trash",
+            "keywords": [
+                "cakephp",
+                "muffin",
+                "orm",
+                "trash"
+            ],
+            "time": "2017-10-10T13:02:55+00:00"
         },
         {
             "name": "psr/http-message",

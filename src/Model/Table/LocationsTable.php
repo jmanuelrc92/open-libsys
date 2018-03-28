@@ -39,6 +39,10 @@ class LocationsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Muffin/Trash.Trash', [
+            'events' => ['Model.beforeFind'],
+            'field' => 'deleted_at'
+        ]);
 
         $this->hasMany('BookInventories', [
             'foreignKey' => 'location_id'

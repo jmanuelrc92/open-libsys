@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateRoles extends AbstractMigration
+class AddDeletedAtLocations extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,11 +12,10 @@ class CreateRoles extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('roles');
+        $table = $this->table('locations');
         
-        $table->addColumn('role_name', 'string', ['limit' => 10])
-        ->addColumn('created', 'datetime');
+        $table->addColumn('deleted_at', 'datetime');
         
-        $table->create();
+        $table->update();
     }
 }

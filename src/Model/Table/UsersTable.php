@@ -101,7 +101,7 @@ class UsersTable extends Table
     
     public function findAuthUser (Query $query, $options)
     {
-        return $query->contain(['Roles']);
+        return $query->contain(['Roles', 'People']);
     }
     
 }
