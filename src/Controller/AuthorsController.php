@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\AppLogic\Configuration\Templates;
-use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Authors Controller
@@ -22,7 +22,12 @@ class AuthorsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['People']
+            'contain' => ['People'],
+            'sortWhitelist' => [
+                'People.last_name',
+                'People.first_name',
+                'created'
+            ]
         ];
         $authors = $this->paginate($this->Authors);
 
@@ -51,19 +56,26 @@ class AuthorsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
+    {        
         $author = $this->Authors->newEntity();
+        $peopleTable = TableRegistry::get('people');
+        $person = $peopleTable->newEntity();
         if ($this->request->is('post')) {
-            $author = $this->Authors->patchEntity($author, $this->request->getData());
-            if ($this->Authors->save($author)) {
-                $this->Flash->success(__('The author has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            $person = $peopleTable->patchEntity($person, $this->request->getData());
+            $person = $peopleTable->save($person);
+            if($person) {
+                $author = $this->Authors->patchEntity($author, $this->request->getData());
+                $author->person_id = $person->id;
+                if ($this->Authors->save($author)) {
+                    $this->Flash->success(__('The author has been saved.'));
+                    
+                    return $this->redirect(['action' => 'index']);
+                }
             }
             $this->Flash->error(__('The author could not be saved. Please, try again.'));
         }
         $publishingHouses = $this->Authors->PublishingHouses->find('list', ['limit' => 200]);
-        $this->set(compact('author', 'people', 'books', 'publishingHouses'));
+        $this->set(compact('author', 'publishingHouses'));
         $this->set('templates', [Templates::HTML_TEMPLATES['inputContainer']]);
     }
 

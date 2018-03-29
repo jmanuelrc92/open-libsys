@@ -4,67 +4,88 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Person') ?></th>
-            <td><?= $user->has('person') ? $this->Html->link($user->person->id, ['controller' => 'People', 'action' => 'view', $user->person->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Username') ?></th>
-            <td><?= h($user->username) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($user->modified) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Active') ?></th>
-            <td><?= $user->active ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Loans') ?></h4>
-        <?php if (!empty($user->loans)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col"><?= __('Book Inventory Id') ?></th>
-                <th scope="col"><?= __('Loan Date Start') ?></th>
-                <th scope="col"><?= __('Loan Date End') ?></th>
-                <th scope="col"><?= __('Active Loan') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($user->loans as $loans): ?>
-            <tr>
-                <td><?= h($loans->id) ?></td>
-                <td><?= h($loans->user_id) ?></td>
-                <td><?= h($loans->book_inventory_id) ?></td>
-                <td><?= h($loans->loan_date_start) ?></td>
-                <td><?= h($loans->loan_date_end) ?></td>
-                <td><?= h($loans->active_loan) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Loans', 'action' => 'view', $loans->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Loans', 'action' => 'edit', $loans->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Loans', 'action' => 'delete', $loans->id], ['confirm' => __('Are you sure you want to delete # {0}?', $loans->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-</div>
+<header class="content-header">
+	<h1>Users</h1>
+	<?php
+	   $this->Breadcrumbs->add('Users', ['controller' => 'users', 'action' => 'index'], ['templateVars' => ['icon' => '<i class="fa fa-dashboard" aria-hidden="true"></i>']]);
+	   $this->Breadcrumbs->add('View');
+	   $this->Breadcrumbs->templates($breadcrumbsTemplates);
+	   echo $this->Breadcrumbs->render(['class' => 'breadcrumb']);
+	?>
+</header>
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">User information</h3>
+				</div>
+				<div class="box-body">
+					<dl class="dl-horizontal">
+						<dt>Username:</dt>
+						<dd><?= $user->username?></dd>
+						<dt>Rol:</dt>
+						<dd><?= $user->role->role_name?></dd>
+						<dt>Member since:</dt>
+						<dd><?= $user->created?></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Personal info</h3>
+				</div>
+				<div class="box-body">
+					<dl class="dl-horizontal">
+						<dt>Name:</dt>
+						<dd><?= $user->person->first_name.' '.$user->person->middle_name?></dd>
+						<dt>Last name:</dt>
+						<dd><?= $user->person->last_name.' '.$user->person->sur_name?></dd>
+					</dl>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Recent loans</h3>
+				</div>
+				<div class="box-body table-responsive">
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th>Serial</th>
+								<th>Book ID</th>
+								<th>Loan date start</th>
+								<th>Loan date end</th>
+								<th>Finished</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php if (!empty($user->loans)): ?>
+								<?php foreach ($user->loans as $loans): ?>
+                                <tr>
+                                    <td><?= h($loans->id) ?></td>
+                                    <td><?= h($loans->book_inventory_id) ?></td>
+                                    <td><?= h($loans->loan_date_start) ?></td>
+                                    <td><?= h($loans->loan_date_end) ?></td>
+                                    <td><?= h($loans->active_loan) ?></td>
+                                    <td class="actions">
+                                        <?= $this->Html->link(__('View'), ['controller' => 'Loans', 'action' => 'view', $loans->id]) ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+							<?php endif;?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

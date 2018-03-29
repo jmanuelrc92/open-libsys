@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\AppLogic\Configuration\Templates;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -26,7 +25,13 @@ class UsersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['People']
+            'contain' => ['People'],
+            'sortWhitelist' => [
+                'People.last_name',
+                'People.first_name',
+                'username',
+                'created'
+            ]
         ];
         $users = $this->paginate($this->Users);
 
@@ -43,7 +48,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['People', 'Loans']
+            'contain' => ['People', 'Roles', 'Loans']
         ]);
 
         $this->set('user', $user);
@@ -75,10 +80,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'roles'));
-        
-        $this->set('templates', [Templates::HTML_TEMPLATES['inputContainer']]);
-        
+        $this->set(compact('user', 'roles'));        
     }
 
     /**
@@ -91,19 +93,29 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' =>  ['People']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            $peopleTable = TableRegistry::get('People');
+            $data = $this->request->getData();
+            $person = $peopleTable->get($user->person_id);
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+            
+            $person->first_name = $data['first_name'];
+            $person->middle_name = $data['middle_name'];
+            $person->last_name = $data['last_name'];
+            $person->sur_name = $data['sur_name'];
+            
+            if ($peopleTable->save($person)) {
+                $user->modified = date('Y-m-d H:i:s');
+                $this->Users->save($user);
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $people = $this->Users->People->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'people'));
+        $this->set(compact('user'));
     }
 
     /**
@@ -128,8 +140,8 @@ class UsersController extends AppController
     
     public function login()
     {
+        $user = null;
         $this->viewBuilder()->setLayout('AdminLTE.login');
-        $this->set('templates', [Templates::HTML_TEMPLATES['inputContainer']]);
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
@@ -139,6 +151,7 @@ class UsersController extends AppController
                 $this->Flash->error(__('Username or password is incorrect'));
             }
         }
+        $this->set('user', $user);
     }
     
     public function logout()

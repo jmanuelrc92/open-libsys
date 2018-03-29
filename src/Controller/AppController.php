@@ -14,6 +14,7 @@
  */
 namespace App\Controller;
 
+use App\AppConfiguration\Templates;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 
@@ -81,6 +82,8 @@ class AppController extends Controller
             $personName = $user['person']['first_name'].' '.$user['person']['last_name'];
             $this->set('personName', $personName);
             $this->set('registrationDate', $user['created']);
+            $this->set('breadcrumbsTemplates', Templates::HTML_TEMPLATES['breadcrumbs']);
         }
+        $this->set('formTemplates', Templates::HTML_TEMPLATES['form']);
     }
 }
