@@ -23,3 +23,13 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+
+\.buildpath
+
+\.project
+
+\.settings/org\.eclipse\.wst\.validation\.prefs
+
+tmp/debug_kit\.sqlite
+
+tests/
