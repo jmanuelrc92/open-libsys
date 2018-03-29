@@ -14,8 +14,8 @@ class CreateBooks extends AbstractMigration
     {
         $table = $this->table('books');
         
-        $table->addColumn('title', 'string',['limit' => 250])
-        ->addColumn('isbn_code', 'string', ['limit' => 20])
+        $table->addColumn('title', 'string')
+        ->addColumn('isbn_code', 'string', ['limit' => 15])
         ->addColumn('description', 'string')
         ->addColumn('created', 'datetime')
         ->addColumn('modified', 'datetime');

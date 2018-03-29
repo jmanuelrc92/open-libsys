@@ -29,3 +29,7 @@
 \.project
 
 \.settings/org\.eclipse\.wst\.validation\.prefs
+
+tmp/debug_kit\.sqlite
+
+tests/
