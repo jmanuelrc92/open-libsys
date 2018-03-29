@@ -35,7 +35,7 @@ class PublishingHousesTable extends Table
         parent::initialize($config);
 
         $this->setTable('publishing_houses');
-        $this->setDisplayField('id');
+        $this->setDisplayField('publishing_house_name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

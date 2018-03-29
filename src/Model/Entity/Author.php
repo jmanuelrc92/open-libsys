@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * Author Entity
@@ -35,4 +36,10 @@ class Author extends Entity
         'books' => true,
         'publishing_houses' => true
     ];
+    
+    public function _getFullName()
+    {
+        $person = TableRegistry::get('people')->get($this->person_id);
+        return $person->last_name.' '.$person->sur_name.', '.$person->first_name.' '.$person->middle_name;
+    }
 }

@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\AppLogic\Configuration\Templates;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -76,7 +75,6 @@ class AuthorsController extends AppController
         }
         $publishingHouses = $this->Authors->PublishingHouses->find('list', ['limit' => 200]);
         $this->set(compact('author', 'publishingHouses'));
-        $this->set('templates', [Templates::HTML_TEMPLATES['inputContainer']]);
     }
 
     /**
@@ -89,7 +87,7 @@ class AuthorsController extends AppController
     public function edit($id = null)
     {
         $author = $this->Authors->get($id, [
-            'contain' => ['Books', 'PublishingHouses']
+            'contain' => ['PublishingHouses', 'People']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $author = $this->Authors->patchEntity($author, $this->request->getData());
