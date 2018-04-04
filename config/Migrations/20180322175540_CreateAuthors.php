@@ -16,7 +16,7 @@ class CreateAuthors extends AbstractMigration
         
         $table->addColumn('person_id', 'integer')
         ->addColumn('created', 'datetime')
-        ->addColumn('modified', 'datetime')
+        ->addColumn('modified', 'datetime', ['null' => true])
         ->addForeignKey('person_id', 'people', 'id');
         
         $table->create();

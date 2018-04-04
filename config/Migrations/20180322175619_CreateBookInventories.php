@@ -12,14 +12,14 @@ class CreateBookInventories extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('book_inventories', ['id' => false, 'primary_key' => 'id']);
+        $table = $this->table('book_inventories');
         
-        $table->addColumn('id', 'string', ['limit' => 20])
-        ->addColumn('book_id', 'integer')
+        $table->addColumn('book_id', 'integer')
         ->addColumn('available', 'boolean')
         ->addColumn('location_id', 'integer')
         ->addColumn('created', 'datetime')
         ->addColumn('modified', 'datetime')
+        ->addColumn('deleted_at', 'datetime', ['null' => true])
         ->addForeignKey('book_id', 'books', 'id')
         ->addForeignKey('location_id', 'locations', 'id');
         

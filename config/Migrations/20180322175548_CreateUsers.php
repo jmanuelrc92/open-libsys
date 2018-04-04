@@ -17,13 +17,24 @@ class CreateUsers extends AbstractMigration
         $table->addColumn('person_id', 'integer')
         ->addColumn('username', 'string',['limit' => 50])
         ->addColumn('password', 'string', ['limit' => 255])
-        ->addColumn('active', 'boolean')
+        ->addColumn('role_id', 'integer')
         ->addColumn('created', 'datetime')
-        ->addColumn('modified', 'datetime')
+        ->addColumn('modified', 'datetime', ['null' => true])
         ->addForeignKey('person_id', 'people', 'id')
+        ->addForeignKey('role_id', 'roles', 'id')
         ->addIndex('username', ['unique' => true]);
         
         $table->create();
+        
+        $table->insert([
+            'username' => 'admin@openlibrary.org',
+            'password' => 'admin',
+            'created' => date('Y-m-d H:i:s'),
+            'person_id' => 1,
+            'role_id' => 1
+        ]);
+        
+        $table->save();
     }
     
 }

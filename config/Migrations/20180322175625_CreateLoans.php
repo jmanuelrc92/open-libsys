@@ -12,12 +12,11 @@ class CreateLoans extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('loans', ['id' => false, 'primary_key' => 'id']);
+        $table = $this->table('loans');
         
-        $table->addColumn('id', 'string', ['limit' => 20])
-        ->addColumn('user_id', 'integer')
-        ->addColumn('book_inventory_id', 'string', ['limit' => 20])
-        ->addColumn('loan_date_start', 'datetime')
+        $table->addColumn('user_id', 'integer')
+        ->addColumn('book_inventory_id', 'integer')
+        ->addColumn('loan_date_start', 'datetime', ['null' => true])
         ->addColumn('loan_date_end', 'datetime')
         ->addColumn('active_loan', 'boolean')
         ->addForeignKey('user_id', 'users', 'id')

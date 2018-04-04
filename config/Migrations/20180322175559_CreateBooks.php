@@ -18,7 +18,8 @@ class CreateBooks extends AbstractMigration
         ->addColumn('isbn_code', 'string', ['limit' => 15])
         ->addColumn('description', 'string')
         ->addColumn('created', 'datetime')
-        ->addColumn('modified', 'datetime');
+        ->addColumn('modified', 'datetime', ['null' => true])
+        ->addColumn('deleted_at', 'datetime', ['null' => true]);
         
         $table->create();
     }

@@ -18,6 +18,7 @@ class CreateAuthorsPublishingHouses extends AbstractMigration
         ->addColumn('author_id', 'integer')
         ->addColumn('publishing_house_id', 'integer')
         ->addColumn('created', 'datetime')
+        ->addColumn('deleted_at', 'datetime', ['null' => true])
         ->addForeignKey('author_id', 'authors', 'id')
         ->addForeignKey('publishing_house_id', 'publishing_houses', 'id');
         
