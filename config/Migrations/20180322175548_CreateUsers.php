@@ -1,5 +1,6 @@
 <?php
 use Migrations\AbstractMigration;
+use Cake\Auth\DefaultPasswordHasher;
 
 class CreateUsers extends AbstractMigration
 {
@@ -28,7 +29,7 @@ class CreateUsers extends AbstractMigration
         
         $table->insert([
             'username' => 'admin@openlibrary.org',
-            'password' => 'admin',
+            'password' => (new DefaultPasswordHasher())->hash('admin'),
             'created' => date('Y-m-d H:i:s'),
             'person_id' => 1,
             'role_id' => 1
