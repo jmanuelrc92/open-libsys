@@ -21,13 +21,6 @@ class PeopleSeed extends AbstractSeed
     {
         $faker = Factory::create();
         $data = [];
-        $data[] = [
-            'first_name' => 'System',
-            'middle_name' => '',
-            'last_name' => 'Admin',
-            'sur_name' => '',
-            'created' => date('Y-m-d H:i:s')
-        ];
         for ($i = 0; $i < 150; $i++) {
             $data[] = [
                 'first_name' => $faker->firstName,

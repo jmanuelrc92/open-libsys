@@ -24,7 +24,7 @@ class LocationsSeed extends AbstractSeed
         $data = [];
         for ($i = 0; $i < 30; $i ++) {
             $data[] = [
-                'location_name' => $faker->domainWord,
+                'location_name' => $faker->countryCode,
                 'location_code' => $faker->countryCode.'-'.$faker->languageCode,
                 'created' => date('Y-m-d H:i:s')
             ];

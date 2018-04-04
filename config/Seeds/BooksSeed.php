@@ -24,14 +24,14 @@ class BooksSeed extends AbstractSeed
         $data = [];
         for ($i = 0; $i < 100; $i ++) {
             $data[] = [
-                'title' => $faker->opera,
+                'title' => $faker->sentence,
                 'isbn_code' => $faker->isbn10,
                 'description' => $faker->paragraph,
                 'created' => date('Y-m-d H:i:s')
             ];
             
             $data[] = [
-                'title' => $faker->opera,
+                'title' => $faker->sentence,
                 'isbn_code' => $faker->isbn13,
                 'description' => $faker->paragraph,
                 'created' => date('Y-m-d H:i:s')
