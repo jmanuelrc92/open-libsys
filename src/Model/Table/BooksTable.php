@@ -65,13 +65,13 @@ class BooksTable extends Table
 
         $validator
             ->scalar('title')
-            ->maxLength('title', 250)
+            ->maxLength('title', 255)
             ->requirePresence('title', 'create')
             ->notEmpty('title');
 
         $validator
             ->scalar('isbn_code')
-            ->maxLength('isbn_code', 20)
+            ->maxLength('isbn_code', 15)
             ->requirePresence('isbn_code', 'create')
             ->notEmpty('isbn_code');
 
@@ -80,6 +80,10 @@ class BooksTable extends Table
             ->maxLength('description', 255)
             ->requirePresence('description', 'create')
             ->notEmpty('description');
+
+        $validator
+            ->dateTime('deleted_at')
+            ->allowEmpty('deleted_at');
 
         return $validator;
     }

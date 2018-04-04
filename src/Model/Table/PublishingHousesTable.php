@@ -65,6 +65,10 @@ class PublishingHousesTable extends Table
             ->requirePresence('publishing_house_name', 'create')
             ->notEmpty('publishing_house_name');
 
+        $validator
+            ->dateTime('deleted_at')
+            ->allowEmpty('deleted_at');
+
         return $validator;
     }
 }

@@ -4,21 +4,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * BookInventory Entity
+ * AuthorsBook Entity
  *
- * @property int $id
+ * @property string $id
+ * @property int $author_id
  * @property int $book_id
- * @property bool $available
- * @property int $location_id
  * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
- * @property \Cake\I18n\FrozenTime $deleted_at
  *
+ * @property \App\Model\Entity\Author $author
  * @property \App\Model\Entity\Book $book
- * @property \App\Model\Entity\Location $location
- * @property \App\Model\Entity\Loan[] $loans
  */
-class BookInventory extends Entity
+class AuthorsBook extends Entity
 {
 
     /**
@@ -31,14 +27,10 @@ class BookInventory extends Entity
      * @var array
      */
     protected $_accessible = [
+        'author_id' => true,
         'book_id' => true,
-        'available' => true,
-        'location_id' => true,
         'created' => true,
-        'modified' => true,
-        'deleted_at' => true,
-        'book' => true,
-        'location' => true,
-        'loans' => true
+        'author' => true,
+        'book' => true
     ];
 }

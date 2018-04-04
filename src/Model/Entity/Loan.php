@@ -6,9 +6,9 @@ use Cake\ORM\Entity;
 /**
  * Loan Entity
  *
- * @property string $id
+ * @property int $id
  * @property int $user_id
- * @property string $book_inventory_id
+ * @property int $book_inventory_id
  * @property \Cake\I18n\FrozenTime $loan_date_start
  * @property \Cake\I18n\FrozenTime $loan_date_end
  * @property bool $active_loan

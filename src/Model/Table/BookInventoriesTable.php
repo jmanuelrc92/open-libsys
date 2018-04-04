@@ -64,14 +64,17 @@ class BookInventoriesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->scalar('id')
-            ->maxLength('id', 20)
+            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
             ->boolean('available')
             ->requirePresence('available', 'create')
             ->notEmpty('available');
+
+        $validator
+            ->dateTime('deleted_at')
+            ->allowEmpty('deleted_at');
 
         return $validator;
     }

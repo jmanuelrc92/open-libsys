@@ -11,8 +11,8 @@ use Cake\ORM\Entity;
  * @property string $middle_name
  * @property string $last_name
  * @property string $sur_name
- * @property string $created
- * @property string $modified
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Author[] $authors
  * @property \App\Model\Entity\User[] $users

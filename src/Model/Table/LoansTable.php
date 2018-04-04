@@ -1,9 +1,12 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Datasource\EntityInterface;
+use Cake\Event\Event;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -56,14 +59,12 @@ class LoansTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->scalar('id')
-            ->maxLength('id', 20)
+            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
             ->dateTime('loan_date_start')
-            ->requirePresence('loan_date_start', 'create')
-            ->notEmpty('loan_date_start');
+            ->allowEmpty('loan_date_start');
 
         $validator
             ->dateTime('loan_date_end')
@@ -91,5 +92,13 @@ class LoansTable extends Table
         $rules->add($rules->existsIn(['book_inventory_id'], 'BookInventories'));
 
         return $rules;
+    }
+    
+    public function afterSave(Event $event, EntityInterface $entity, \ArrayObject $options)
+    {
+        $bookInventoryTable = TableRegistry::get('book_inventories');
+        $bookInventory = $bookInventoryTable->get($entity->book_inventory_id);
+        $bookInventory->available = $entity->active_loan;
+        return $bookInventoryTable->save($bookInventory);
     }
 }
