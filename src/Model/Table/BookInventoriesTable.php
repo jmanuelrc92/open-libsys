@@ -93,4 +93,11 @@ class BookInventoriesTable extends Table
 
         return $rules;
     }
+    
+    public function findBySerial(Query $query, array $config)
+    {
+        $serial = $config['serial'];
+        return $query->where(['serial' => $serial])->first();
+    }
+    
 }
