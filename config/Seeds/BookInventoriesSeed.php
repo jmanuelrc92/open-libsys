@@ -30,18 +30,25 @@ class BookInventoriesSeed extends AbstractSeed
             $inventoryPerBook = rand(1, 4);
             $counter = 0;
             do {
+                $time = time();
                 $data[] = [
                     'location_id' => rand(1, $locationsMaxId->id),
                     'book_id' => $book->id,
-                    'created' => date('Y-m-d H:i:s'),
-                    'available' => true
+                    'created' => date('Y-m-d H:i:s', $time),
+                    'available' => true,
+                    'serial' => $this->buildSerial($time, $book->id, $counter+1)
                 ];
                 $counter ++;
             } while ($counter < $inventoryPerBook);
         }
-        
         $table = $this->table('book_inventories');
         $table->insert($data)->save();
+    }
+    
+    private function buildSerial(int $time, int $bookId, int $bookCounter)
+    {
+        //string format: YY.MM
+        return  date('y.m', $time).'.'.$bookId.'.'.$bookCounter;
     }
 
 }

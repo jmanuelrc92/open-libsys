@@ -17,6 +17,7 @@ class CreateBookInventories extends AbstractMigration
         $table->addColumn('book_id', 'integer')
         ->addColumn('available', 'boolean')
         ->addColumn('location_id', 'integer')
+        ->addColumn('serial', 'string', ['limit' => 20])
         ->addColumn('created', 'datetime')
         ->addColumn('modified', 'datetime')
         ->addColumn('deleted_at', 'datetime', ['null' => true])
