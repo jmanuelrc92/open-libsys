@@ -2,6 +2,8 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Core\App;
+use App\AppConfiguration\Templates;
 
 /**
  * Loan Entity
@@ -37,4 +39,17 @@ class Loan extends Entity
         'user' => true,
         'book_inventory' => true
     ];
+    
+    protected function _getLoanDateStart($loan_date_start)
+    {
+        $dateObject = date_create($loan_date_start);
+        return date_format($dateObject, Templates::DATETIME_FORMAT);
+    }
+    
+    protected function _getLoanDateEnd($loan_date_end)
+    {
+        $dateObject = date_create($loan_date_end);
+        return date_format($dateObject, Templates::DATETIME_FORMAT);
+    }
+    
 }
