@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Event\Event;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -103,5 +104,5 @@ class UsersTable extends Table
     {
         return $query->contain(['Roles', 'People']);
     }
-    
+   
 }
