@@ -39,4 +39,34 @@ class Person extends Entity
         'authors' => true,
         'users' => true
     ];
+    
+    public function _getInformalName()
+    {
+        $informalName = $this->first_name;
+        if ($this->middle_name!= '' && !is_null($this->middle_name)) {
+            $informalName.=' '.$this->middle_name;
+        }
+        
+        $informalName.=' '.$this->last_name;
+        if ($this->sur_name!= '' && !is_null($this->sur_name)) {
+            $informalName.=' '.$this->sur_name;
+        }
+        
+        return $informalName;
+    }
+    
+    public function _getFormalName()
+    {
+        $formalName = $this->last_name;
+        if ($this->sur_name!= '' && !is_null($this->sur_name)) {
+            $formalName.=' '.$this->sur_name;
+        }
+        
+        $formalName .= ', '.$this->first_name;
+        if ($this->middle_name!= '' && !is_null($this->middle_name)) {
+            $formalName.=' '.$this->middle_name;
+        }
+        
+        return $formalName;
+    }
 }
