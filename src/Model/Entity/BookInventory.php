@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\AppConfiguration\Templates;
 
 /**
  * BookInventory Entity
@@ -41,4 +42,10 @@ class BookInventory extends Entity
         'location' => true,
         'loans' => true
     ];
+    
+    protected function _getModified($modified)
+    {
+        $dateObject = date_create($modified);
+        return date_format($dateObject, Templates::DATETIME_FORMAT);
+    }
 }
