@@ -21,7 +21,9 @@ class BooksController extends AppController
      */
     public function index()
     {
-        $books = $this->paginate($this->Books);
+        $books = $this->paginate($this->Books, [
+            'contain' => 'PublishingHouses'
+        ]);
 
         $this->set(compact('books'));
     }
@@ -36,7 +38,7 @@ class BooksController extends AppController
     public function view($id = null)
     {
         $book = $this->Books->get($id, [
-            'contain' => ['Authors.People', 'BookInventories.Locations']
+            'contain' => ['Authors.People', 'BookInventories.Locations', 'PublishingHouses']
         ]);
 
         $this->set('book', $book);
@@ -60,7 +62,8 @@ class BooksController extends AppController
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
         $authors = $this->Books->Authors->find('list', ['limit' => 200]);
-        $this->set(compact('book', 'authors'));
+        $publishingHouses = $this->Books->PublishingHouses->find('list', ['limit' => 200]);
+        $this->set(compact('book', 'authors', 'publishingHouses'));
     }
 
     /**
@@ -73,7 +76,7 @@ class BooksController extends AppController
     public function edit($id = null)
     {
         $book = $this->Books->get($id, [
-            'contain' => ['Authors']
+            'contain' => ['Authors', 'PublishingHouses']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
@@ -85,8 +88,8 @@ class BooksController extends AppController
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
         $authors = $this->Books->Authors->find('list', ['limit' => 200]);
-        $this->set(compact('book', 'authors'));
-        $authorsBooksTable = TableRegistry::get('authors_books');
+        $publishingHouses = $this->Books->PublishingHouses->find('list', ['limit' => 200]);
+        $this->set(compact('book', 'authors', 'publishingHOuses'));
     }
 
     /**
