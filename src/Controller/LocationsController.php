@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\AppLogic\Configuration\Templates;
 
 /**
  * Locations Controller
@@ -60,7 +59,6 @@ class LocationsController extends AppController
             $this->Flash->error(__('The location could not be saved. Please, try again.'));
         }
         $this->set(compact('location'));
-        $this->set('templates', [Templates::HTML_TEMPLATES['inputContainer']]);
     }
 
     /**
@@ -98,7 +96,8 @@ class LocationsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $location = $this->Locations->get($id);
-        if ($this->Locations->delete($location)) {
+        //if ($this->Locations->delete($location)) {
+        if ($this->Locations->trash($location)) {
             $this->Flash->success(__('The location has been deleted.'));
         } else {
             $this->Flash->error(__('The location could not be deleted. Please, try again.'));

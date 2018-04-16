@@ -62,20 +62,11 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
-        
-        $peopleTable = TableRegistry::get('people');
-        $person = $peopleTable->newEntity();
         if ($this->request->is('post')) {
-            $person = $peopleTable->patchEntity($person, $this->request->getData());
-            $person = $peopleTable->save($person);
-            if($person) {
-                $user = $this->Users->patchEntity($user, $this->request->getData());
-                $user->person_id = $person->id;
-                if ($this->Users->save($user)) {
-                    $this->Flash->success(__('The user has been saved.'));
-                    
-                    return $this->redirect(['action' => 'index']);
-                }
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }

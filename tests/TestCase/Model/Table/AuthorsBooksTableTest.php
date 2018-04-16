@@ -90,4 +90,14 @@ class AuthorsBooksTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test _saveAuthorsForBook method
+     *
+     * @return void
+     */
+    public function testSaveAuthorsForBook()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

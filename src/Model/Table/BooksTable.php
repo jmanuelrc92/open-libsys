@@ -49,6 +49,11 @@ class BooksTable extends Table
             'targetForeignKey' => 'author_id',
             'joinTable' => 'authors_books'
         ]);
+        
+        $this->belongsTo('PublishingHouses', [
+            'foreignKey' => 'publishing_house_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -65,13 +70,13 @@ class BooksTable extends Table
 
         $validator
             ->scalar('title')
-            ->maxLength('title', 250)
+            ->maxLength('title', 255)
             ->requirePresence('title', 'create')
             ->notEmpty('title');
 
         $validator
             ->scalar('isbn_code')
-            ->maxLength('isbn_code', 20)
+            ->maxLength('isbn_code', 15)
             ->requirePresence('isbn_code', 'create')
             ->notEmpty('isbn_code');
 
@@ -81,6 +86,25 @@ class BooksTable extends Table
             ->requirePresence('description', 'create')
             ->notEmpty('description');
 
+        $validator
+            ->dateTime('deleted_at')
+            ->allowEmpty('deleted_at');
+
         return $validator;
     }
+    
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['publishing_house_id'], 'PublishingHouses'));
+        
+        return $rules;
+    }
+    
 }

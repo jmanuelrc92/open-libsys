@@ -33,3 +33,5 @@
 tmp/debug_kit\.sqlite
 
 tests/
+
+config/Migrations/schema-dump-default\.lock

@@ -44,10 +44,10 @@ class AuthorsBooksFixture extends TestFixture
      */
     public $records = [
         [
-            'id' => '573c63a7-c7bf-479a-8c73-5813f80e59de',
+            'id' => '568ee755-a342-4060-acfd-ab453529406d',
             'author_id' => 1,
             'book_id' => 1,
-            'created' => '2018-03-28 19:33:47'
+            'created' => '2018-04-04 23:26:06'
         ],
     ];
 }

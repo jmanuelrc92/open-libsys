@@ -35,16 +35,10 @@ class PublishingHousesTable extends Table
         parent::initialize($config);
 
         $this->setTable('publishing_houses');
-        $this->setDisplayField('id');
+        $this->setDisplayField('publishing_house_name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
-        $this->belongsToMany('Authors', [
-            'foreignKey' => 'publishing_house_id',
-            'targetForeignKey' => 'author_id',
-            'joinTable' => 'authors_publishing_houses'
-        ]);
     }
 
     /**
@@ -64,6 +58,10 @@ class PublishingHousesTable extends Table
             ->maxLength('publishing_house_name', 250)
             ->requirePresence('publishing_house_name', 'create')
             ->notEmpty('publishing_house_name');
+
+        $validator
+            ->dateTime('deleted_at')
+            ->allowEmpty('deleted_at');
 
         return $validator;
     }
