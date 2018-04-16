@@ -39,12 +39,6 @@ class PublishingHousesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
-        $this->belongsToMany('Authors', [
-            'foreignKey' => 'publishing_house_id',
-            'targetForeignKey' => 'author_id',
-            'joinTable' => 'authors_publishing_houses'
-        ]);
     }
 
     /**

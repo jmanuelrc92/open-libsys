@@ -33,8 +33,7 @@ class Author extends Entity
         'created' => true,
         'modified' => true,
         'person' => true,
-        'books' => true,
-        'publishing_houses' => true
+        'books' => true
     ];
     
     public function _getFullName()

@@ -49,6 +49,11 @@ class BooksTable extends Table
             'targetForeignKey' => 'author_id',
             'joinTable' => 'authors_books'
         ]);
+        
+        $this->belongsTo('PublishingHouses', [
+            'foreignKey' => 'publishing_house_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -87,4 +92,19 @@ class BooksTable extends Table
 
         return $validator;
     }
+    
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['publishing_house_id'], 'PublishingHouses'));
+        
+        return $rules;
+    }
+    
 }

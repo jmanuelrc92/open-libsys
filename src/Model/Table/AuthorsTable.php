@@ -37,7 +37,7 @@ class AuthorsTable extends Table
         parent::initialize($config);
 
         $this->setTable('authors');
-        $this->setDisplayField('full_name');
+        $this->setDisplayField('fid');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -50,11 +50,6 @@ class AuthorsTable extends Table
             'foreignKey' => 'author_id',
             'targetForeignKey' => 'book_id',
             'joinTable' => 'authors_books'
-        ]);
-        $this->belongsToMany('PublishingHouses', [
-            'foreignKey' => 'author_id',
-            'targetForeignKey' => 'publishing_house_id',
-            'joinTable' => 'authors_publishing_houses'
         ]);
     }
 

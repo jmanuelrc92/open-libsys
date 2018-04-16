@@ -18,8 +18,10 @@ class CreateBooks extends AbstractMigration
         ->addColumn('isbn_code', 'string', ['limit' => 15])
         ->addColumn('description', 'string')
         ->addColumn('created', 'datetime')
+        ->addColumn('publishing_house_id', 'integer')
         ->addColumn('modified', 'datetime', ['null' => true])
-        ->addColumn('deleted_at', 'datetime', ['null' => true]);
+        ->addColumn('deleted_at', 'datetime', ['null' => true])
+        ->addForeignKey('publishing_house_id', 'publishing_houses');
         
         $table->create();
     }
