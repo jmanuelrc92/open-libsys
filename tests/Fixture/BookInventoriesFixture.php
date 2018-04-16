@@ -17,12 +17,13 @@ class BookInventoriesFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'id' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'book_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'available' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'location_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'deleted_at' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
             'book_id' => ['type' => 'index', 'columns' => ['book_id'], 'length' => []],
             'location_id' => ['type' => 'index', 'columns' => ['location_id'], 'length' => []],
@@ -46,12 +47,13 @@ class BookInventoriesFixture extends TestFixture
      */
     public $records = [
         [
-            'id' => '1237de2d-4602-4aa4-8312-a2d6d4b7da14',
+            'id' => 1,
             'book_id' => 1,
             'available' => 1,
             'location_id' => 1,
-            'created' => '2018-03-27 05:14:18',
-            'modified' => '2018-03-27 05:14:18'
+            'created' => '2018-04-04 23:30:26',
+            'modified' => '2018-04-04 23:30:26',
+            'deleted_at' => '2018-04-04 23:30:26'
         ],
     ];
 }

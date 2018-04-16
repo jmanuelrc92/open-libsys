@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  * @property string $publishing_house_name
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\FrozenTime $deleted_at
  *
  * @property \App\Model\Entity\Author[] $authors
  */
@@ -29,6 +30,7 @@ class PublishingHouse extends Entity
         'publishing_house_name' => true,
         'created' => true,
         'modified' => true,
+        'deleted_at' => true,
         'authors' => true
     ];
 }

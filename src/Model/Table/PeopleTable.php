@@ -70,6 +70,7 @@ class PeopleTable extends Table
         $validator
             ->scalar('middle_name')
             ->maxLength('middle_name', 50)
+            ->requirePresence('middle_name', 'create')
             ->allowEmpty('middle_name');
 
         $validator
@@ -81,6 +82,7 @@ class PeopleTable extends Table
         $validator
             ->scalar('sur_name')
             ->maxLength('sur_name', 50)
+            ->requirePresence('sur_name', 'create')
             ->allowEmpty('sur_name');
 
         return $validator;

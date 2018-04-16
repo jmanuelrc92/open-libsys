@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use Cake\Auth\DefaultPasswordHasher;
+use App\AppConfiguration\Templates;
 
 /**
  * User Entity
@@ -57,5 +58,11 @@ class User extends Entity
         if (strlen($password) > 0) {
             return (new DefaultPasswordHasher)->hash($password);
         }
+    }
+    
+    protected  function _getCreated($created)
+    {
+        $dateObject = date_create($created); 
+        return date_format($dateObject, Templates::DATETIME_FORMAT);
     }
 }

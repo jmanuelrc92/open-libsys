@@ -40,12 +40,8 @@
 				<div class="box-body">
 					<dl class="dl-horizontal">
 						<dt>Name:</dt>
-						<dd><?= $user->person->first_name.' '.$user->person->middle_name?></dd>
-						<dt>Last name:</dt>
-						<dd><?= $user->person->last_name.' '.$user->person->sur_name?></dd>
+						<dd><?= $user->person->_getInformalName()?></dd>
 					</dl>
-				</div>
-				<div class="box-footer">
 				</div>
 			</div>
 		</div>

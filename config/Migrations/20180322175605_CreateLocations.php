@@ -17,7 +17,8 @@ class CreateLocations extends AbstractMigration
         $table->addColumn('location_name', 'string',['limit' => 50])
         ->addColumn('location_code', 'string', ['limit' => 10])
         ->addColumn('created', 'datetime')
-        ->addColumn('modified', 'datetime');
+        ->addColumn('modified', 'datetime', ['null' => true])
+        ->addColumn('deleted_at', 'datetime', ['null' => true]);
         
         $table->create();
     }

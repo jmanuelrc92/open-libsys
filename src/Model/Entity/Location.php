@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property string $location_code
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\FrozenTime $deleted_at
  *
  * @property \App\Model\Entity\BookInventory[] $book_inventories
  */
@@ -31,6 +32,7 @@ class Location extends Entity
         'location_code' => true,
         'created' => true,
         'modified' => true,
+        'deleted_at' => true,
         'book_inventories' => true
     ];
 }
