@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 use App\AppConfiguration\Templates;
 
 /**
@@ -40,7 +41,8 @@ class BookInventory extends Entity
         'deleted_at' => true,
         'book' => true,
         'location' => true,
-        'loans' => true
+        'loans' => true,
+        'serial' => true
     ];
     
     protected function _getModified($modified)
