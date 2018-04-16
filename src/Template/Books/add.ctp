@@ -33,6 +33,11 @@ $this->Form->setTemplates($formTemplates);
                                 'placeholder' => 'enter a little description of the book',
                                 'class' => 'form-control'
                             ]);
+                            echo $this->Form->control('publishing_house_id', [
+                                'options' => $publishingHouses,
+                                'class' => 'form-control',
+                                'empty' => 'Choose a publisher'
+                            ]);
                             echo $this->Form->control('authors._ids', [
                                 'options' => $authors,
                                 'class' => 'form-control'

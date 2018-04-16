@@ -30,35 +30,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<div class="box box-primary">
-				<div class="box-header">
-					<h3 class="box-title">Publishing houses</h3>
-				</div>
-				<div class="box-body">
-					<table class="table table-condensed">
-    					<thead>
-    						<tr>
-    							<th>Publishing house</th>
-    							<th>Actions</th>
-    						</tr>
-    					</thead>
-    					<tbody>
-    						<?php if (!empty($author->publishing_houses)): ?>
-    							<?php foreach ($author->publishing_houses as $publishingHouse): ?>
-                                   <tr>
-                                       <td><?= h($publishingHouse->publishing_house_name) ?></td>
-                                       <td class="actions">
-                                           <?= $this->Html->link(__('View'), ['controller' => 'publishing_houses', 'action' => 'view', $publishingHouse->id]) ?>
-                                       </td>
-                                   </tr>
-                                   <?php endforeach; ?>
-    						<?php endif;?>
-    					</tbody>
-    				</table>
-				</div>
-			</div>
-		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

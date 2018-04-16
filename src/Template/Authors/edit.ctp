@@ -37,9 +37,6 @@
                         'class' => 'form-control',
                         'placeholder' => 'JOHNSON'
                     ]);
-                    echo $this->Form->control('publishing_houses._ids', [
-                        'options' => $publishingHouses,
-                        'class' => 'form-control']);
                 ?>
 				<?= $this->Form->button('Save', ['class' => 'btn btn-success'])?>
 				<?= $this->Html->link('Cancel', ['controller' => 'authors', 'action' => 'index'], ['class' => 'btn btn-default'])?>

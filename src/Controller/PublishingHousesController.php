@@ -34,9 +34,7 @@ class PublishingHousesController extends AppController
      */
     public function view($id = null)
     {
-        $publishingHouse = $this->PublishingHouses->get($id, [
-            'contain' => ['Authors']
-        ]);
+        $publishingHouse = $this->PublishingHouses->get($id);
 
         $this->set('publishingHouse', $publishingHouse);
     }
@@ -58,7 +56,6 @@ class PublishingHousesController extends AppController
             }
             $this->Flash->error(__('The publishing house could not be saved. Please, try again.'));
         }
-        $authors = $this->PublishingHouses->Authors->find('list', ['limit' => 200]);
         $this->set(compact('publishingHouse', 'authors'));
     }
 
@@ -71,9 +68,7 @@ class PublishingHousesController extends AppController
      */
     public function edit($id = null)
     {
-        $publishingHouse = $this->PublishingHouses->get($id, [
-            'contain' => ['Authors']
-        ]);
+        $publishingHouse = $this->PublishingHouses->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $publishingHouse = $this->PublishingHouses->patchEntity($publishingHouse, $this->request->getData());
             if ($this->PublishingHouses->save($publishingHouse)) {
@@ -83,8 +78,7 @@ class PublishingHousesController extends AppController
             }
             $this->Flash->error(__('The publishing house could not be saved. Please, try again.'));
         }
-        $authors = $this->PublishingHouses->Authors->find('list', ['limit' => 200]);
-        $this->set(compact('publishingHouse', 'authors'));
+        $this->set(compact('publishingHouse'));
     }
 
     /**

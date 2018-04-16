@@ -28,7 +28,7 @@
                             <tr>
                                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('isbn_code') ?></th>
-                                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
+                                <th scope="col"><?= $this->Paginator->sort('publishinghouses.publishing_house_name', 'Publisher') ?></th>
                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -37,7 +37,7 @@
                             <tr>
                                 <td><?= h($book->title) ?></td>
                                 <td><?= h($book->isbn_code) ?></td>
-                                <td><?= h($book->description) ?></td>
+                                <td><?= h($book->publishing_house->publishing_house_name) ?></td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $book->id], ['class' => 'btn btn-primary btn-xs']) ?>
                                 </td>
