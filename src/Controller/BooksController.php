@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -56,13 +55,12 @@ class BooksController extends AppController
             $book = $this->Books->patchEntity($book, $this->request->getData());
             if ($this->Books->save($book)) {
                 $this->Flash->success(__('The book has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
-        $authors = $this->Books->Authors->find('list', ['limit' => 200]);
-        $publishingHouses = $this->Books->PublishingHouses->find('list', ['limit' => 200]);
+        $authors = $this->Books->Authors->find('list');
+        $publishingHouses = $this->Books->PublishingHouses->find('list');
         $this->set(compact('book', 'authors', 'publishingHouses'));
     }
 

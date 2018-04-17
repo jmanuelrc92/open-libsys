@@ -37,7 +37,7 @@ class Book extends Entity
         'modified' => true,
         'deleted_at' => true,
         'book_inventories' => true,
-        'authors' => true,
+        'author_id' => true,
         'publishing_house_id' => true
     ];
 }

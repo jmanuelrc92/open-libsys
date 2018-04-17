@@ -38,16 +38,20 @@ class AuthorsBooksFixture extends TestFixture
     // @codingStandardsIgnoreEnd
 
     /**
-     * Records
+     * Init method
      *
-     * @var array
+     * @return void
      */
-    public $records = [
-        [
-            'id' => '568ee755-a342-4060-acfd-ab453529406d',
-            'author_id' => 1,
-            'book_id' => 1,
-            'created' => '2018-04-04 23:26:06'
-        ],
-    ];
+    public function init()
+    {
+        $this->records = [
+            [
+                'id' => '7de09035-2b66-4b83-8828-38d43d0e8fb4',
+                'author_id' => 1,
+                'book_id' => 1,
+                'created' => '2018-04-17 13:55:17'
+            ],
+        ];
+        parent::init();
+    }
 }

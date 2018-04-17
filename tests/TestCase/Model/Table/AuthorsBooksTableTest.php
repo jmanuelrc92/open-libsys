@@ -26,15 +26,7 @@ class AuthorsBooksTableTest extends TestCase
     public $fixtures = [
         'app.authors_books',
         'app.authors',
-        'app.people',
-        'app.users',
-        'app.roles',
-        'app.loans',
-        'app.book_inventories',
-        'app.books',
-        'app.locations',
-        'app.publishing_houses',
-        'app.authors_publishing_houses'
+        'app.books'
     ];
 
     /**
@@ -87,16 +79,6 @@ class AuthorsBooksTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test _saveAuthorsForBook method
-     *
-     * @return void
-     */
-    public function testSaveAuthorsForBook()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
