@@ -25,7 +25,7 @@
 						<dt>Username:</dt>
 						<dd><?= $loan->user->username?></dd>
 						<dt>Name:</dt>
-						<dd><?= $loan->user->person->_getInformalName()?></dd>
+						<dd><?= $loan->user->person->informal_name?></dd>
 						<dt>Loan start:</dt>
 						<dd><?= $loan->loan_date_start?></dd>
 						<dt>Loan end:</dt>
