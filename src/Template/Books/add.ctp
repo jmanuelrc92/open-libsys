@@ -38,9 +38,10 @@ $this->Form->setTemplates($formTemplates);
                                 'class' => 'form-control',
                                 'empty' => 'Choose a publisher'
                             ]);
-                            echo $this->Form->control('authors._ids', [
+                            echo $this->Form->control('author_id', [
                                 'options' => $authors,
-                                'class' => 'form-control'
+                                'class' => 'form-control',
+                                'empty' => 'Choose an author'
                             ]);
                         ?>
                     	<?= $this->Form->button('Save', ['class' => 'btn btn-success'])?>

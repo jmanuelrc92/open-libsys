@@ -36,9 +36,9 @@ class Author extends Entity
         'books' => true
     ];
     
-    public function _getFullName()
+    protected function _getFormalName ()
     {
         $person = TableRegistry::get('people')->get($this->person_id);
-        return $person->last_name.' '.$person->sur_name.', '.$person->first_name.' '.$person->middle_name;
+        return $person->formal_name;
     }
 }

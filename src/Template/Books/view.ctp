@@ -26,6 +26,8 @@
 						<dd><?= $book->title?></dd>
 						<dt>ISBN code:</dt>
 						<dd><?= $book->isbn_code?></dd>
+						<dt>Publisher:</dt>
+						<dd><?= $book->publishing_house->publishing_house_name?></dd>
 						<dt>Description:</dt>
 						<dd><?= $book->description?></dd>
 					</dl>
@@ -41,21 +43,13 @@
 					<table class="table table-condensed">
 						<thead>
 							<tr>
-                                <th scope="col"><?= __('Last name') ?></th>
-                                <th scope="col"><?= __('Sur name') ?></th>
-                                <th scope="col"><?= __('Middle name') ?></th>
-                                <th scope="col"><?= __('First name') ?></th>
+                                <th scope="col"><?= __('Author') ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                        	<?php foreach ($book->authors as $authors): ?>
                             <tr>
-                                <td><?= h($authors->person->last_name) ?></td>
-                                <td><?= h($authors->person->sur_name) ?></td>
-                                <td><?= h($authors->person->middle_name) ?></td>
-                                <td><?= h($authors->person->first_name) ?></td>
+                                <td><?= $book->author->person->formal_name ?></td>
                             </tr>
-                            <?php endforeach; ?>
                         </tbody>
 					</table>
 				</div>

@@ -79,7 +79,8 @@ class LoansController extends AppController
         }
         $users = $this->Loans->Users->find('list', [
             'limit' => 200
-        ]);
+        ])->leftJoin('roles','roles.id = role_id')
+        ->where(['roles.role_name !=' => 'ADMIN']);
         $this->set(compact('loan', 'users'));
     }
 

@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Books Model
@@ -44,10 +45,8 @@ class BooksTable extends Table
         $this->hasMany('BookInventories', [
             'foreignKey' => 'book_id'
         ]);
-        $this->belongsToMany('Authors', [
-            'foreignKey' => 'book_id',
-            'targetForeignKey' => 'author_id',
-            'joinTable' => 'authors_books'
+        $this->belongsTo('Authors', [
+            'foreignKey' => 'author_id'
         ]);
         
         $this->belongsTo('PublishingHouses', [
@@ -102,7 +101,8 @@ class BooksTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['publishing_house_id'], 'PublishingHouses'));
+        $rules->add($rules->existsIn(['publishing_house_id'], 'PublishingHouses'))
+            ->add($rules->existsIn(['author_id'], 'Authors'));
         
         return $rules;
     }

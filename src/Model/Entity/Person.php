@@ -40,7 +40,7 @@ class Person extends Entity
         'users' => true
     ];
     
-    public function _getInformalName()
+    protected function _getInformalName()
     {
         $informalName = $this->first_name;
         if ($this->middle_name!= '' && !is_null($this->middle_name)) {
@@ -55,7 +55,7 @@ class Person extends Entity
         return $informalName;
     }
     
-    public function _getFormalName()
+    protected function _getFormalName()
     {
         $formalName = $this->last_name;
         if ($this->sur_name!= '' && !is_null($this->sur_name)) {
