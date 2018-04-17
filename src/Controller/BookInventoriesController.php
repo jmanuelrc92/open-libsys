@@ -36,7 +36,7 @@ class BookInventoriesController extends AppController
     public function view($id = null)
     {
         $bookInventory = $this->BookInventories->get($id, [
-            'contain' => ['Books', 'Locations', 'Loans']
+            'contain' => ['Books.Authors.People', 'Locations']
         ]);
 
         $this->set('bookInventory', $bookInventory);
