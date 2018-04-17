@@ -24,7 +24,8 @@ $this->Form->setTemplates($formTemplates);
                             echo $this->Form->control('user_id', [
                                 'class' => 'form-control',
                                 'options' => $users,
-                                'label' => 'User'
+                                'label' => 'User',
+                                'empty' => 'Choose a user'
                             ]);
                             echo $this->Form->control('book_inventory.serial', [
                                 'class' => 'form-control',
