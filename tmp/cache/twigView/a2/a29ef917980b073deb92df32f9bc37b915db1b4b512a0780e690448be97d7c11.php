@@ -92,17 +92,21 @@ class ";
             // line 64
             echo "
     /**
-     * Records
+     * Init method
      *
-     * @var array
+     * @return void
      */
-    public \$records = ";
-            // line 70
+    public function init()
+    {
+        \$this->records = ";
+            // line 72
             echo ($context["records"] ?? null);
             echo ";
+        parent::init();
+    }
 ";
         }
-        // line 72
+        // line 76
         echo "}
 ";
         
@@ -122,7 +126,7 @@ class ";
 
     public function getDebugInfo()
     {
-        return array (  106 => 72,  101 => 70,  93 => 64,  91 => 63,  85 => 59,  76 => 52,  74 => 51,  69 => 48,  61 => 42,  59 => 41,  54 => 38,  46 => 32,  44 => 31,  39 => 29,  33 => 26,  25 => 21,  22 => 20,);
+        return array (  110 => 76,  103 => 72,  93 => 64,  91 => 63,  85 => 59,  76 => 52,  74 => 51,  69 => 48,  61 => 42,  59 => 41,  54 => 38,  46 => 32,  44 => 31,  39 => 29,  33 => 26,  25 => 21,  22 => 20,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -200,11 +204,15 @@ class {{ name }}Fixture extends TestFixture
 {%- if records %}
 
     /**
-     * Records
+     * Init method
      *
-     * @var array
+     * @return void
      */
-    public \$records = {{ records|raw }};
+    public function init()
+    {
+        \$this->records = {{ records|raw }};
+        parent::init();
+    }
 {% endif %}
 }
 ", "/home/jmrdzc/Documents/projects/openlibsys/open-libsys/vendor/cakephp/bake/src/Template/Bake/tests/fixture.twig", "/home/jmrdzc/Documents/projects/openlibsys/open-libsys/vendor/cakephp/bake/src/Template/Bake/tests/fixture.twig");

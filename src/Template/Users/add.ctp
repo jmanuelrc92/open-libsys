@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+$this->Form->setTemplates($formTemplates);
 ?>
 <header class="content-header">
 	<h1>Users</h1>
@@ -18,7 +19,6 @@
 		<div class="col-md-12">
 			<div class="box box-primary">
 				<div class="box-body">
-					<?php $this->Form->setTemplates($formTemplates) ?>
 					<?= $this->Form->create($user)?>
         				<?php
                             echo $this->Form->control('username', [
@@ -33,19 +33,19 @@
                                 'empty' => 'CHOOSE A ROLE',
                                 'class' => 'form-control'
                             ]);
-                            echo $this->Form->control('first_name', [
+                            echo $this->Form->control('person.first_name', [
                                 'class' => 'form-control',
                                 'placeholder' => 'JOHN'
                             ]);
-                            echo $this->Form->control('middle_name', [
+                            echo $this->Form->control('person.middle_name', [
                                 'class' => 'form-control',
                                 'placeholder' => 'UNKNOWN'
                             ]);
-                            echo $this->Form->control('last_name', [
+                            echo $this->Form->control('person.last_name', [
                                 'class' => 'form-control',
                                 'placeholder' => 'DOE'
                             ]);
-                            echo $this->Form->control('sur_name', [
+                            echo $this->Form->control('person.sur_name', [
                                 'class' => 'form-control',
                                 'placeholder' => 'JOHNSON'
                             ]);

@@ -14,4 +14,6 @@ class Templates
             'separator' => '<li{{attrs}}><span{{innerAttrs}}>{{separator}}</span></li>'
         ]
     ];
+    
+    const DATETIME_FORMAT = 'Y-m-d H:i:s';
 }

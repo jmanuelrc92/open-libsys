@@ -16,7 +16,8 @@ class CreatePublishingHouses extends AbstractMigration
         
         $table->addColumn('publishing_house_name', 'string', ['limit' => 250])
         ->addColumn('created', 'datetime')
-        ->addColumn('modified', 'datetime');
+        ->addColumn('modified', 'datetime', ['null' => true])
+        ->addColumn('deleted_at', 'datetime', ['null' => true]);
         
         $table->create();
     }

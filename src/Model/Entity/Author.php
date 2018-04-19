@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * Author Entity
@@ -32,7 +33,12 @@ class Author extends Entity
         'created' => true,
         'modified' => true,
         'person' => true,
-        'books' => true,
-        'publishing_houses' => true
+        'books' => true
     ];
+    
+    protected function _getFormalName ()
+    {
+        $person = TableRegistry::get('people')->get($this->person_id);
+        return $person->formal_name;
+    }
 }

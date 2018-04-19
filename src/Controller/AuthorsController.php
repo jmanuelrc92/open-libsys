@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\AppLogic\Configuration\Templates;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -44,7 +43,7 @@ class AuthorsController extends AppController
     public function view($id = null)
     {
         $author = $this->Authors->get($id, [
-            'contain' => ['People', 'Books', 'PublishingHouses']
+            'contain' => ['People', 'Books']
         ]);
 
         $this->set('author', $author);
@@ -74,9 +73,7 @@ class AuthorsController extends AppController
             }
             $this->Flash->error(__('The author could not be saved. Please, try again.'));
         }
-        $publishingHouses = $this->Authors->PublishingHouses->find('list', ['limit' => 200]);
-        $this->set(compact('author', 'publishingHouses'));
-        $this->set('templates', [Templates::HTML_TEMPLATES['inputContainer']]);
+        $this->set(compact('author'));
     }
 
     /**
@@ -89,7 +86,7 @@ class AuthorsController extends AppController
     public function edit($id = null)
     {
         $author = $this->Authors->get($id, [
-            'contain' => ['Books', 'PublishingHouses']
+            'contain' => ['People']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $author = $this->Authors->patchEntity($author, $this->request->getData());
@@ -102,8 +99,7 @@ class AuthorsController extends AppController
         }
         $people = $this->Authors->People->find('list', ['limit' => 200]);
         $books = $this->Authors->Books->find('list', ['limit' => 200]);
-        $publishingHouses = $this->Authors->PublishingHouses->find('list', ['limit' => 200]);
-        $this->set(compact('author', 'people', 'books', 'publishingHouses'));
+        $this->set(compact('author', 'people', 'books'));
     }
 
     /**

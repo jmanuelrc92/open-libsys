@@ -4,34 +4,45 @@
  * @var \App\Model\Entity\Author $author
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $author->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $author->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Authors'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Books'), ['controller' => 'Books', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Book'), ['controller' => 'Books', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Publishing Houses'), ['controller' => 'PublishingHouses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Publishing House'), ['controller' => 'PublishingHouses', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="authors form large-9 medium-8 columns content">
-    <?= $this->Form->create($author) ?>
-    <fieldset>
-        <legend><?= __('Edit Author') ?></legend>
-        <?php
-            echo $this->Form->control('person_id', ['options' => $people]);
-            echo $this->Form->control('books._ids', ['options' => $books]);
-            echo $this->Form->control('publishing_houses._ids', ['options' => $publishingHouses]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<header class="content-header">
+	<h1>Authors</h1>
+	<?php
+    	$this->Breadcrumbs->add('Authors', ['controller' => 'authors', 'action' => 'index'], ['templateVars' => ['icon' => '<i class="fa fa-dashboard" aria-hidden="true"></i>']]);
+    	$this->Breadcrumbs->add('Edit');
+    	$this->Breadcrumbs->templates($breadcrumbsTemplates);
+    	echo $this->Breadcrumbs->render(['class' => 'breadcrumb']);
+	?>
+</header>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-body">
+				<?php $this->Form->setTemplates($formTemplates) ?>
+				<?= $this->Form->create($author)?>
+				<?php
+                    echo $this->Form->control('first_name', [
+                        'class' => 'form-control',
+                        'placeholder' => 'JOHN'
+                    ]);
+                    echo $this->Form->control('middle_name', [
+                        'class' => 'form-control',
+                        'placeholder' => 'UNKNOWN'
+                    ]);
+                    echo $this->Form->control('last_name', [
+                        'class' => 'form-control',
+                        'placeholder' => 'DOE'
+                    ]);
+                    echo $this->Form->control('sur_name', [
+                        'class' => 'form-control',
+                        'placeholder' => 'JOHNSON'
+                    ]);
+                ?>
+				<?= $this->Form->button('Save', ['class' => 'btn btn-success'])?>
+				<?= $this->Html->link('Cancel', ['controller' => 'authors', 'action' => 'index'], ['class' => 'btn btn-default'])?>
+				<?= $this->Form->end()?>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
