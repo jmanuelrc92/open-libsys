@@ -23,7 +23,7 @@ $this->layout = false;
 
 if (!Configure::read('debug')) :
     throw new NotFoundException(
-        'Please replace src/Template/Pages/home.ctp with your own version or re-enable debug mode.'
+        'Please replace src/Template/Pages/home_cake.ctp with your own version or re-enable debug mode.'
     );
 endif;
 
@@ -41,7 +41,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->css('home.css') ?>
+    <?= $this->Html->css('home_cake.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 </head>
 <body class="home">

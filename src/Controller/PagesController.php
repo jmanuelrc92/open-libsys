@@ -18,6 +18,7 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -65,5 +66,19 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+    }
+    
+    public function appHome ()
+    {        
+        $this->paginate = [
+            'contain' => ['users'],
+            'sortWhitelist' => [
+                'users.username',
+                'loan_date_start',
+                'loan_date_end'
+            ]
+        ];
+        $expiredLoans = $this->paginate(TableRegistry::get('loans')->find('expiredLoans', []));
+        $this->set(compact('expiredLoans'));
     }
 }

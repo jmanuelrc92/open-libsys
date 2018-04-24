@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Database\Query;
 use Cake\Datasource\EntityInterface;
 use Cake\Event\Event;
 use Cake\ORM\RulesChecker;
@@ -110,6 +111,7 @@ class LoansTable extends Table
         $data['book_inventory_id'] = $bookInventory->id;
         if (!array_key_exists('loan_date_start', $data)) {
             $data['loan_date_start'] = date('Y-m-d H:i:s');
+            $data['expired_loan'] = false;
         }
     }
 
@@ -121,6 +123,12 @@ class LoansTable extends Table
         return $bookInventoryTable->save($bookInventory);
     }
     
-    
+    public function findExpiredLoans(Query $query, array $config)
+    {
+        return $query->where([
+            'active_loan' => true,
+            'expired_loan' => true
+        ])->orderAsc('loan_date_end');
+    }
     
 }
