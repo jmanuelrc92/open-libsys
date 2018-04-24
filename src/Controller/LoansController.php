@@ -28,13 +28,14 @@ class LoansController extends AppController
                 'Users.username',
                 'loan_date_start',
                 'loan_date_end',
-                'active_loan'
+                'active_loan',
+                'expired_loan'
             ]
         ];
         $loans = $this->paginate($this->Loans->query()
-            ->where([
+        ->where([
             'active_loan' => true
-        ]));
+        ])->orderAsc('loan_date_end'));
         
         $this->set(compact('loans'));
     }
@@ -52,7 +53,7 @@ class LoansController extends AppController
         $loan = $this->Loans->get($id, [
             'contain' => [
                 'Users.People',
-                'BookInventories.Books'
+                'BookInventories.Books.Authors.People'
             ]
         ]);
         
@@ -68,19 +69,24 @@ class LoansController extends AppController
     {
         $loan = $this->Loans->newEntity();
         if ($this->request->is('post')) {
-            $loan = $this->Loans->patchEntity($loan, $this->request->getData(), ['associated' => []]);
+            $loan = $this->Loans->patchEntity($loan, $this->request->getData(), [
+                'associated' => []
+            ]);
             if ($this->Loans->save($loan)) {
                 $this->Flash->success(__('The loan has been saved.'));
                 return $this->redirect([
                     'action' => 'index'
                 ]);
             }
-            $this->Flash->error(__('The loan could not be saved. Please, try again. ').json_encode($loan->getErrors()));
+            $this->Flash->error(__('The loan could not be saved. Please, try again. ') . json_encode($loan->getErrors()));
         }
         $users = $this->Loans->Users->find('list', [
             'limit' => 200
-        ])->leftJoin('roles','roles.id = role_id')
-        ->where(['roles.role_name !=' => 'ADMIN']);
+        ])
+            ->leftJoin('roles', 'roles.id = role_id')
+            ->where([
+            'roles.role_name !=' => 'ADMIN'
+        ]);
         $this->set(compact('loan', 'users'));
     }
 
@@ -100,12 +106,18 @@ class LoansController extends AppController
                 'BookInventories.Books'
             ]
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->request->is([
+            'patch',
+            'post',
+            'put'
+        ])) {
             $requestData = $this->request->getData();
             $loan = $this->Loans->patchEntity($loan, $this->request->getData());
             if ($this->Loans->save($loan)) {
                 $this->Flash->success(__('The loan has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect([
+                    'action' => 'index'
+                ]);
             }
             $this->Flash->error(__('The loan could not be saved. Please, try again.'));
         }
