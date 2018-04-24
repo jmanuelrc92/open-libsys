@@ -40,6 +40,11 @@ class Person extends Entity
         'users' => true
     ];
     
+    protected $_virtual = [
+        'informal_name',
+        'formal_name'
+    ];
+    
     protected function _getInformalName()
     {
         $informalName = $this->first_name;
