@@ -23,12 +23,15 @@ class CreateRoles extends AbstractMigration
         $table->create();
         
         $table->insert([
-            'role_name' => 'ADMIN',
-            'created' => date('Y-m-d H:i:s')
-        ], [
-            'role_name' => 'NORMAL',
-            'created' => date('Y-m-d H:i:s')
+            [
+                'role_name' => 'ADMIN',
+                'created' => date('Y-m-d H:i:s')
+            ],
+            [
+                'role_name' => 'GUEST',
+                'created' => date('Y-m-d H:i:s')
+            ]
         ]);
-        $table->save();        
+        $table->save();
     }
 }
