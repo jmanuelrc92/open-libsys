@@ -43,6 +43,10 @@ use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
+use FrankFoerster\Environment\Environments;
+
+Plugin::load('FrankFoerster/Environment');
+Environments::init();
 
 /**
  * Uncomment block of code below if you want to use `.env` file during development.

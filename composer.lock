@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0cfbf86c77a911aeac176bc902886a2e",
+    "content-hash": "e83aa2b5419447465efc7d98c1ebae40",
     "packages": [
         {
             "name": "aura/intl",
@@ -288,6 +288,63 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2017-12-24T21:09:29+00:00"
+        },
+        {
+            "name": "frankfoerster/cakephp-environment",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/frankfoerster/cakephp-environment.git",
+                "reference": "161d6d89d0b6c0537a0107b30b3bb60af83da97c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/frankfoerster/cakephp-environment/zipball/161d6d89d0b6c0537a0107b30b3bb60af83da97c",
+                "reference": "161d6d89d0b6c0537a0107b30b3bb60af83da97c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "3.*",
+                "cakephp/cakephp-codesniffer": "3.*",
+                "phpunit/phpunit": "^5.7|^6.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "FrankFoerster\\Environment\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Förster",
+                    "homepage": "http://frankfoerster.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Stephan Gonder",
+                    "homepage": "http://stephanaspi.com",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "CakePHP Environment Plugin. Manage multiple environments in your CakePHP application that differ in database setup, configuration settings (Configure) and custom feature flags.",
+            "homepage": "https://github.com/frankfoerster/cakephp-environment",
+            "keywords": [
+                "cakephp",
+                "config",
+                "configuration",
+                "configure",
+                "database",
+                "environment",
+                "setup"
+            ],
+            "time": "2017-11-18T13:43:42+00:00"
         },
         {
             "name": "fzaninotto/faker",
