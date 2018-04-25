@@ -37,3 +37,5 @@ tests/
 config/Migrations/schema-dump-default\.lock
 
 logs/empty
+
+config/Environment/
