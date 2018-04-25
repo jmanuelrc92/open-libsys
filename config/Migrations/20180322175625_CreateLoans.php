@@ -19,6 +19,7 @@ class CreateLoans extends AbstractMigration
         ->addColumn('loan_date_start', 'datetime', ['null' => true])
         ->addColumn('loan_date_end', 'datetime')
         ->addColumn('active_loan', 'boolean')
+        ->addColumn('expired_loan', 'boolean')
         ->addForeignKey('user_id', 'users', 'id')
         ->addForeignKey('book_inventory_id', 'book_inventories', 'id');
         

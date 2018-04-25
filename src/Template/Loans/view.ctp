@@ -31,7 +31,9 @@
 						<dt>Loan end:</dt>
 						<dd><?= $loan->loan_date_end?></dd>
 						<dt>Active:</dt>
-						<dd><?= ($loan->active_loan)? 'Yes':'No'?></dd>
+						<dd><?= ($loan->active_loan)? 'Yes':'NO'?></dd>
+						<dt>Expired:</dt>
+						<dd><?= ($loan->expired_loan)? 'Yes':'NO'?></dd>
 					</dl>
 				</div>
 			</div>
@@ -49,9 +51,9 @@
 						<dd><?= $loan->book_inventory->serial?></dd>
 						<dt>ISBN code:</dt>
 						<dd><?= $loan->book_inventory->book->isbn_code?></dd>
+						<dt>Author:</dt>
+						<dd><?= $loan->book_inventory->book->author->person->formal_name?></dd>
 					</dl>
-				</div>
-				<div class="box-footer">
 				</div>
 			</div>
 		</div>

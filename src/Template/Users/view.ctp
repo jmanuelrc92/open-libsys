@@ -18,16 +18,16 @@
 		<div class="col-md-6">
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">User information</h3>
+					<h3 class="box-title">User info</h3>
 				</div>
 				<div class="box-body">
 					<dl class="dl-horizontal">
 						<dt>Username:</dt>
 						<dd><?= $user->username?></dd>
-						<dt>Rol:</dt>
-						<dd><?= $user->role->role_name?></dd>
 						<dt>Member since:</dt>
 						<dd><?= $user->created?></dd>
+						<dt>Role:</dt>
+						<dd><?= $user->role->role_name?></dd>
 					</dl>
 				</div>
 			</div>
@@ -35,12 +35,12 @@
 		<div class="col-md-6">
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">Personal info</h3>
+					<h3 class="box-title">Author info</h3>
 				</div>
 				<div class="box-body">
 					<dl class="dl-horizontal">
 						<dt>Name:</dt>
-						<dd><?= $user->person->_getInformalName()?></dd>
+						<dd><?= $user->person->informal_name?></dd>
 					</dl>
 				</div>
 			</div>
@@ -56,24 +56,23 @@
 					<table class="table table-condensed">
 						<thead>
 							<tr>
-								<th>Serial</th>
-								<th>Book ID</th>
-								<th>Loan date start</th>
-								<th>Loan date end</th>
-								<th>Finished</th>
+								<th>Loan start</th>
+								<th>Loan end</th>
+								<th>Active</th>
+								<th>Expired</th>
+								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php if (!empty($user->loans)): ?>
-								<?php foreach ($user->loans as $loans): ?>
+								<?php foreach ($user->loans as $loan): ?>
                                 <tr>
-                                    <td><?= h($loans->id) ?></td>
-                                    <td><?= h($loans->book_inventory_id) ?></td>
-                                    <td><?= h($loans->loan_date_start) ?></td>
-                                    <td><?= h($loans->loan_date_end) ?></td>
-                                    <td><?= h($loans->active_loan) ?></td>
+                                    <td><?= h($loan->loan_date_start) ?></td>
+                                    <td><?= h($loan->loan_date_end) ?></td>
+                                    <td><?= ($loan->active_loan) ? 'Yes':'No' ?></td>
+                                    <td><?= ($loan->expired_loan) ? 'Yes':'No' ?></td>
                                     <td class="actions">
-                                        <?= $this->Html->link(__('View'), ['controller' => 'Loans', 'action' => 'view', $loans->id]) ?>
+                                        <?= $this->Html->link(__('View'), ['controller' => 'loans', 'action' => 'view', $loan->id], ['class' => 'btn btn-primary btn-xs']) ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>

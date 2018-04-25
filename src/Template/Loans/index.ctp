@@ -32,17 +32,19 @@
                                 <th scope="col"><?= $this->Paginator->sort('loan_date_start') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('loan_date_end') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('active_loan') ?></th>
+                                <th scope="col"><?= $this->Paginator->sort('expired_loan') ?></th>
                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($loans as $loan): ?>
-                            <tr>
+                            <tr class="<?= ($loan->expired_loan)? 'danger':''?>">
                                 <td><?= $loan->has('user') ? $this->Html->link($loan->user->username, ['controller' => 'Users', 'action' => 'view', $loan->user->id]) : '' ?></td>
                                 <td><?= $loan->has('book_inventory') ? $this->Html->link($loan->book_inventory->serial, ['controller' => 'BookInventories', 'action' => 'view', $loan->book_inventory->id]) : '' ?></td>
                                 <td><?= h($loan->loan_date_start) ?></td>
                                 <td><?= h($loan->loan_date_end) ?></td>
                                 <td><?= ($loan->active_loan) ? 'Yes':'NO' ?></td>
+                                <td><?= ($loan->expired_loan) ? 'Yes':'NO' ?></td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $loan->id], ['class' => 'btn btn-primary btn-xs']) ?>
                                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $loan->id], ['class' => 'btn btn-warning btn-xs']) ?>

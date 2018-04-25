@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0cfbf86c77a911aeac176bc902886a2e",
+    "content-hash": "e83aa2b5419447465efc7d98c1ebae40",
     "packages": [
         {
             "name": "aura/intl",
@@ -290,6 +290,63 @@
             "time": "2017-12-24T21:09:29+00:00"
         },
         {
+            "name": "frankfoerster/cakephp-environment",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/frankfoerster/cakephp-environment.git",
+                "reference": "161d6d89d0b6c0537a0107b30b3bb60af83da97c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/frankfoerster/cakephp-environment/zipball/161d6d89d0b6c0537a0107b30b3bb60af83da97c",
+                "reference": "161d6d89d0b6c0537a0107b30b3bb60af83da97c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "3.*",
+                "cakephp/cakephp-codesniffer": "3.*",
+                "phpunit/phpunit": "^5.7|^6.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "FrankFoerster\\Environment\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Förster",
+                    "homepage": "http://frankfoerster.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Stephan Gonder",
+                    "homepage": "http://stephanaspi.com",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "CakePHP Environment Plugin. Manage multiple environments in your CakePHP application that differ in database setup, configuration settings (Configure) and custom feature flags.",
+            "homepage": "https://github.com/frankfoerster/cakephp-environment",
+            "keywords": [
+                "cakephp",
+                "config",
+                "configuration",
+                "configure",
+                "database",
+                "environment",
+                "setup"
+            ],
+            "time": "2017-11-18T13:43:42+00:00"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "v1.7.1",
             "source": {
@@ -551,24 +608,25 @@
         },
         {
             "name": "muffin/trash",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UseMuffin/Trash.git",
-                "reference": "715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2"
+                "reference": "a995ce3eafcadc4adc94eacf4af9313f2b3a2f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UseMuffin/Trash/zipball/715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2",
-                "reference": "715c32d23a7a96fbdb74a0b45131bcbb9eda0ea2",
+                "url": "https://api.github.com/repos/UseMuffin/Trash/zipball/a995ce3eafcadc4adc94eacf4af9313f2b3a2f4d",
+                "reference": "a995ce3eafcadc4adc94eacf4af9313f2b3a2f4d",
                 "shasum": ""
             },
             "require": {
-                "cakephp/orm": "^3.0"
+                "cakephp/orm": "^3.5"
             },
             "require-dev": {
-                "cakephp/cakephp": "^3.0",
-                "phpunit/phpunit": "<6.0"
+                "cakephp/cakephp": "^3.5",
+                "cakephp/chronos": "^1.1",
+                "phpunit/phpunit": "^5.7.14|^6.0"
             },
             "type": "cakephp-plugin",
             "autoload": {
@@ -604,7 +662,7 @@
                 "orm",
                 "trash"
             ],
-            "time": "2017-10-10T13:02:55+00:00"
+            "time": "2018-04-17T21:27:44+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2106,29 +2164,29 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.1",
+            "version": "v0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "bcdf0b50395750bc916a0685e5a570dca0487dbf"
+                "reference": "79c280013cf0b30fa23f3ba8bd3649218075adf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/bcdf0b50395750bc916a0685e5a570dca0487dbf",
-                "reference": "bcdf0b50395750bc916a0685e5a570dca0487dbf",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/79c280013cf0b30fa23f3ba8bd3649218075adf4",
+                "reference": "79c280013cf0b30fa23f3ba8bd3649218075adf4",
                 "shasum": ""
             },
             "require": {
                 "dnoegel/php-xdg-base-dir": "0.1",
                 "jakub-onderka/php-console-highlighter": "0.3.*",
-                "nikic/php-parser": "~2.0|~3.0|~4.0",
+                "nikic/php-parser": "~1.3|~2.0|~3.0|~4.0",
                 "php": ">=5.4.0",
                 "symfony/console": "~2.3.10|^2.4.2|~3.0|~4.0",
                 "symfony/var-dumper": "~2.7|~3.0|~4.0"
             },
             "require-dev": {
                 "hoa/console": "~2.15|~3.16",
-                "phpunit/phpunit": "~4.4|~5.0|~6.0|~7.0",
+                "phpunit/phpunit": "~4.8.35|~5.0|~6.0|~7.0",
                 "symfony/finder": "~2.1|~3.0|~4.0"
             },
             "suggest": {
@@ -2174,7 +2232,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2018-04-15T22:53:05+00:00"
+            "time": "2018-04-18T12:32:50+00:00"
         },
         {
             "name": "seld/cli-prompt",

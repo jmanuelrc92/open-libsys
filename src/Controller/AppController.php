@@ -79,8 +79,7 @@ class AppController extends Controller
         
         $user = $this->Auth->user();
         if (!is_null($user)) {
-            $personName = $user['person']['first_name'].' '.$user['person']['last_name'];
-            $this->set('personName', $personName);
+            $this->set('personName', $user['person']['informal_name']);
             $this->set('registrationDate', $user['created']);
             $this->set('breadcrumbsTemplates', Templates::HTML_TEMPLATES['breadcrumbs']);
         }
