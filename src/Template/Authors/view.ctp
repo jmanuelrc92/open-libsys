@@ -23,9 +23,9 @@
 				<div class="box-body">
 					<dl class="dl-horizontal">
 						<dt>Name:</dt>
-						<dd><?= $author->person->first_name.' '.$author->person->middle_name?></dd>
+						<dd><?= $author->person->first_name?></dd>
 						<dt>Last name:</dt>
-						<dd><?= $author->person->last_name.' '.$author->person->sur_name?></dd>
+						<dd><?= $author->person->last_name?></dd>
 					</dl>
 				</div>
 			</div>
