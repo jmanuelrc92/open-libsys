@@ -8,9 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $first_name
- * @property string $middle_name
  * @property string $last_name
- * @property string $sur_name
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -31,9 +29,7 @@ class Person extends Entity
      */
     protected $_accessible = [
         'first_name' => true,
-        'middle_name' => true,
         'last_name' => true,
-        'sur_name' => true,
         'created' => true,
         'modified' => true,
         'authors' => true,
@@ -47,31 +43,11 @@ class Person extends Entity
     
     protected function _getInformalName()
     {
-        $informalName = $this->first_name;
-        if ($this->middle_name!= '' && !is_null($this->middle_name)) {
-            $informalName.=' '.$this->middle_name;
-        }
-        
-        $informalName.=' '.$this->last_name;
-        if ($this->sur_name!= '' && !is_null($this->sur_name)) {
-            $informalName.=' '.$this->sur_name;
-        }
-        
-        return $informalName;
+        return $this->first_name.' '.$this->last_name;
     }
     
     protected function _getFormalName()
     {
-        $formalName = $this->last_name;
-        if ($this->sur_name!= '' && !is_null($this->sur_name)) {
-            $formalName.=' '.$this->sur_name;
-        }
-        
-        $formalName .= ', '.$this->first_name;
-        if ($this->middle_name!= '' && !is_null($this->middle_name)) {
-            $formalName.=' '.$this->middle_name;
-        }
-        
-        return $formalName;
+        return $this->last_name.', '.$this->first_name;
     }
 }

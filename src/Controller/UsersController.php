@@ -93,9 +93,7 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             
             $person->first_name = $data['first_name'];
-            $person->middle_name = $data['middle_name'];
             $person->last_name = $data['last_name'];
-            $person->sur_name = $data['sur_name'];
             
             if ($peopleTable->save($person)) {
                 $user->modified = date('Y-m-d H:i:s');

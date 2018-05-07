@@ -37,17 +37,9 @@ $this->Form->setTemplates($formTemplates);
                                 'class' => 'form-control',
                                 'placeholder' => 'JOHN'
                             ]);
-                            echo $this->Form->control('person.middle_name', [
-                                'class' => 'form-control',
-                                'placeholder' => 'UNKNOWN'
-                            ]);
                             echo $this->Form->control('person.last_name', [
                                 'class' => 'form-control',
                                 'placeholder' => 'DOE'
-                            ]);
-                            echo $this->Form->control('person.sur_name', [
-                                'class' => 'form-control',
-                                'placeholder' => 'JOHNSON'
                             ]);
                         ?>
                     	<?= $this->Form->button('Save', ['class' => 'btn btn-success'])?>

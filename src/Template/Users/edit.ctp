@@ -28,13 +28,7 @@
                     echo $this->Form->control('person.first_name', [
                         'class' => 'form-control'
                     ]);
-                    echo $this->Form->control('person.middle_name', [
-                        'class' => 'form-control'
-                    ]);
                     echo $this->Form->control('person.last_name', [
-                        'class' => 'form-control'
-                    ]);
-                    echo $this->Form->control('person.sur_name', [
                         'class' => 'form-control'
                     ]);
                     echo $this->Form->control('people_id', ['hidden' => true, 'label' => false]);
