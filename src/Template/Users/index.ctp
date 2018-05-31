@@ -26,8 +26,7 @@
 					<table class="table table-condensed">
 						<thead>
 							<tr>
-								<th scope="col"><?= $this->Paginator->sort('People.last_name', 'User last name') ?></th>
-								<th scope="col"><?= $this->Paginator->sort('People.first_name', 'User first name') ?></th>
+								<th scope="col"><?= $this->Paginator->sort('People.informal_name', 'User name') ?></th>
 								<th scope="col"><?= $this->Paginator->sort('username') ?></th>
 								<th scope="col"><?= $this->Paginator->sort('created') ?></th>
 								<th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -36,8 +35,7 @@
 						<tbody>
                             <?php foreach ($users as $user): ?>
                             <tr>
-                            	<td><?= $user->has('person') ? $user->person->last_name: '' ?></td>
-            					<td><?= $user->has('person') ? $user->person->first_name: '' ?></td>
+                            	<td><?= $user->has('person') ? $user->person->informal_name: '' ?></td>
             					<td><?= h($user->username) ?></td>
             					<td><?= h($user->created) ?></td>
             					<td class="actions">
