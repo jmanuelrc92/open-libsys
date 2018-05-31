@@ -26,8 +26,7 @@
 					<table class="table table-condensed">
 						<thead>
 							<tr>
-								<th scope="col"><?= $this->Paginator->sort('People.last_name', 'Author\'s last name') ?></th>
-								<th scope="col"><?= $this->Paginator->sort('People.first_name', 'Author\'s first name') ?></th>
+								<th scope="col"><?= $this->Paginator->sort('People.formal_name', 'Author\'s name') ?></th>
 								<th scope="col"><?= $this->Paginator->sort('created') ?></th>
 								<th scope="col" class="actions"><?= __('Actions') ?></th>
 							</tr>
@@ -35,8 +34,7 @@
 						<tbody>
                             <?php foreach ($authors as $author): ?>
                             <tr>
-                				<td><?= $author->has('person') ? $author->person->last_name: '' ?></td>
-            					<td><?= $author->has('person') ? $author->person->first_name: '' ?></td>
+                				<td><?= $author->has('person') ? $author->person->formal_name: '' ?></td>
                 				<td><?= h($author->created) ?></td>
                 				<td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $author->id], ['class' => 'btn btn-primary btn-xs']) ?>

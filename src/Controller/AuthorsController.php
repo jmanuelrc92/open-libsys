@@ -23,8 +23,7 @@ class AuthorsController extends AppController
         $this->paginate = [
             'contain' => ['People'],
             'sortWhitelist' => [
-                'People.last_name',
-                'People.first_name',
+                'People.formal_name',
                 'created'
             ]
         ];
