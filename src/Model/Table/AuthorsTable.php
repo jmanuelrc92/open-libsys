@@ -37,7 +37,7 @@ class AuthorsTable extends Table
         parent::initialize($config);
 
         $this->setTable('authors');
-        $this->setDisplayField('formal_name');
+        $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
