@@ -26,9 +26,9 @@
 					<table class="table table-condensed">
 						<thead>
 							<tr>
-								<th scope="col"><?= $this->Paginator->sort('People.informal_name', 'User name') ?></th>
-								<th scope="col"><?= $this->Paginator->sort('username') ?></th>
-								<th scope="col"><?= $this->Paginator->sort('created') ?></th>
+								<th scope="col"><?= 'Name' ?></th>
+								<th scope="col"><?= 'Username' ?></th>
+								<th scope="col"><?= 'Member since' ?></th>
 								<th scope="col" class="actions"><?= __('Actions') ?></th>
 							</tr>
 						</thead>

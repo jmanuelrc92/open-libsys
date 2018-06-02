@@ -21,11 +21,7 @@ class AuthorsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['People'],
-            'sortWhitelist' => [
-                'People.formal_name',
-                'created'
-            ]
+            'contain' => ['People']
         ];
         $authors = $this->paginate($this->Authors);
 
