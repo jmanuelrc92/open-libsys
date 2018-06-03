@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Utility\Hash;
 use Cake\Validation\Validator;
 
 /**
@@ -37,7 +38,7 @@ class AuthorsTable extends Table
         parent::initialize($config);
 
         $this->setTable('authors');
-        $this->setDisplayField('id');
+        $this->setDisplayField('formal_name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -79,4 +80,5 @@ class AuthorsTable extends Table
 
         return $rules;
     }
+    
 }
