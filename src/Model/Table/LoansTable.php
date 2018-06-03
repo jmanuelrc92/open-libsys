@@ -1,19 +1,16 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\Database\Query;
-use Cake\Datasource\EntityInterface;
-use Cake\Event\Event;
+use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
-use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
  * Loans Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\BookInventoriesTable|\Cake\ORM\Association\BelongsTo $BookInventories
+ * @property \App\Model\Table\BookInventoriesTable|\Cake\ORM\Association\BelongsToMany $BookInventories
  *
  * @method \App\Model\Entity\Loan get($primaryKey, $options = [])
  * @method \App\Model\Entity\Loan newEntity($data = null, array $options = [])
@@ -29,59 +26,59 @@ class LoansTable extends Table
     /**
      * Initialize method
      *
-     * @param array $config
-     *            The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config)
     {
         parent::initialize($config);
-        
+
         $this->setTable('loans');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-        
+
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('BookInventories', [
-            'foreignKey' => 'book_inventory_id',
-            'joinType' => 'INNER'
+        $this->belongsToMany('BookInventories', [
+            'foreignKey' => 'loan_id',
+            'targetForeignKey' => 'book_inventory_id',
+            'joinTable' => 'book_inventories_loans'
         ]);
     }
 
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator
-     *            Validator instance.
+     * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
     {
-        $validator->integer('id')->allowEmpty('id', 'create');
-        
-        $validator->dateTime('loan_date_start')->allowEmpty('loan_date_start');
-        
-        $validator->dateTime('loan_date_end')
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->boolean('active_loan')
+            ->requirePresence('active_loan', 'create')
+            ->notEmpty('active_loan');
+
+        $validator
+            ->boolean('expired_loan')
+            ->requirePresence('expired_loan', 'create')
+            ->notEmpty('expired_loan');
+
+        $validator
+            ->date('loan_date_start')
+            ->allowEmpty('loan_date_start');
+
+        $validator
+            ->date('loan_date_end')
             ->requirePresence('loan_date_end', 'create')
             ->notEmpty('loan_date_end');
-        
-        $validator->boolean('active_loan')->requirePresence('active_loan', 'create');
-        
-        $validator->add('serial', 'availableInventory', [
-            'rule' => function ($value, $context) {
-                if ($context['newRecord']) {
-                    $bookInventory = TableRegistry::get('book_inventories')->find('bySerial', [
-                        'serial' => $value
-                    ]);
-                    return $bookInventory->available;
-                }
-            },
-            'message' => 'This book is not available'
-        ]);
-        
+
         return $validator;
     }
 
@@ -89,46 +86,23 @@ class LoansTable extends Table
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
-     * @param \Cake\ORM\RulesChecker $rules
-     *            The rules object to be modified.
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn([
-            'user_id'
-        ], 'Users'));
-        $rules->add($rules->existsIn([
-            'book_inventory_id'
-        ], 'BookInventories'));
-        
-        return $rules;
-    }
-    
-    public function beforeMarshal(Event $event, \ArrayObject $data, \ArrayObject $options)
-    {
-        $bookInventory = TableRegistry::get('book_inventories')->findBySerial($data['book_inventory']['serial'])->first();
-        $data['book_inventory_id'] = $bookInventory->id;
-        if (!array_key_exists('loan_date_start', $data)) {
-            $data['loan_date_start'] = date('Y-m-d H:i:s');
-            $data['expired_loan'] = false;
-        }
-    }
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
 
-    public function afterSave(Event $event, EntityInterface $entity, \ArrayObject $options)
-    {
-        $bookInventoryTable = TableRegistry::get('book_inventories');
-        $bookInventory = $bookInventoryTable->get($entity->book_inventory_id);
-        $bookInventory->available = ! $entity->active_loan;
-        return $bookInventoryTable->save($bookInventory);
+        return $rules;
     }
     
     public function findExpiredLoans(Query $query, array $config)
     {
         return $query->where([
-            'active_loan' => true,
-            'expired_loan' => true
+                'active_loan' => true,
+                'expired_loan' => true
         ])->orderAsc('loan_date_end');
     }
+    
     
 }

@@ -15,7 +15,11 @@ class UpdateLoans extends AbstractMigration
         $table = $this->table('loans');
         
         $table->dropForeignKey('book_inventory_id')
-        ->removeColumn('book_inventory_id');
+        ->removeColumn('book_inventory_id')
+        ->removeColumn('loan_date_end')
+        ->removeColumn('loan_date_start')
+        ->addColumn('loan_date_end', 'date')
+        ->addColumn('loan_date_start', 'date');
         
         $table->save();
     }
