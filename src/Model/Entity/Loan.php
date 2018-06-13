@@ -42,12 +42,12 @@ class Loan extends Entity
     protected function _getLoanDateStart($loan_date_start)
     {
         $dateObject = date_create($loan_date_start);
-        return date_format($dateObject, Templates::DATETIME_FORMAT);
+        return date_format($dateObject, Templates::DATE_FORMAT);
     }
     
     protected function _getLoanDateEnd($loan_date_end)
     {
         $dateObject = date_create($loan_date_end);
-        return date_format($dateObject, Templates::DATETIME_FORMAT);
+        return date_format($dateObject, Templates::DATE_FORMAT);
     }
 }
