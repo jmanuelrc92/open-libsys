@@ -1,9 +1,8 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-use Cake\ORM\TableRegistry;
 use App\AppConfiguration\Templates;
+use Cake\ORM\Entity;
 
 /**
  * BookInventory Entity
@@ -12,6 +11,7 @@ use App\AppConfiguration\Templates;
  * @property int $book_id
  * @property bool $available
  * @property int $location_id
+ * @property string $serial
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  * @property \Cake\I18n\FrozenTime $deleted_at
@@ -36,13 +36,13 @@ class BookInventory extends Entity
         'book_id' => true,
         'available' => true,
         'location_id' => true,
+        'serial' => true,
         'created' => true,
         'modified' => true,
         'deleted_at' => true,
         'book' => true,
         'location' => true,
-        'loans' => true,
-        'serial' => true
+        'loans' => true
     ];
     
     protected function _getModified($modified)
@@ -50,4 +50,5 @@ class BookInventory extends Entity
         $dateObject = date_create($modified);
         return date_format($dateObject, Templates::DATETIME_FORMAT);
     }
+    
 }

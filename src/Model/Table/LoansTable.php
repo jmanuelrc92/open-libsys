@@ -1,16 +1,20 @@
 <?php
 namespace App\Model\Table;
 
+use App\AppConfiguration\Templates;
+use App\Model\Entity\Loan;
+use Cake\Event\Event;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\TableRegistry;
 
 /**
  * Loans Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\BookInventoriesTable|\Cake\ORM\Association\BelongsToMany $BookInventories
+ * @property |\Cake\ORM\Association\HasMany $LoanDetails
  *
  * @method \App\Model\Entity\Loan get($primaryKey, $options = [])
  * @method \App\Model\Entity\Loan newEntity($data = null, array $options = [])
@@ -41,10 +45,8 @@ class LoansTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsToMany('BookInventories', [
-            'foreignKey' => 'loan_id',
-            'targetForeignKey' => 'book_inventory_id',
-            'joinTable' => 'book_inventories_loans'
+        $this->hasMany('LoanDetails', [
+            'foreignKey' => 'loan_id'
         ]);
     }
 
@@ -67,17 +69,17 @@ class LoansTable extends Table
 
         $validator
             ->boolean('expired_loan')
-            ->requirePresence('expired_loan', 'create')
             ->notEmpty('expired_loan');
-
-        $validator
-            ->date('loan_date_start')
-            ->allowEmpty('loan_date_start');
 
         $validator
             ->date('loan_date_end')
             ->requirePresence('loan_date_end', 'create')
             ->notEmpty('loan_date_end');
+
+        $validator
+            ->date('loan_date_start')
+            ->requirePresence('loan_date_start', 'create')
+            ->notEmpty('loan_date_start');
 
         return $validator;
     }
@@ -96,6 +98,35 @@ class LoansTable extends Table
         return $rules;
     }
     
+    public function saveDetails(Loan $loan, array $data)
+    {
+        $bookInventoryTable = TableRegistry::get('BookInventories');
+        $loanDetailsTable = TableRegistry::get('LoanDetails');
+        $loanDetailsData = [];
+        foreach ($data as $detail) {
+            if ($detail['serial'] != null) {
+                $bookInventory = $bookInventoryTable->findBySerial($detail['serial'])->first();
+                $loanDetailsData[] = [
+                        'loan_id' => $loan->id,
+                        'book_inventory_id' => $bookInventory['id'],
+                        'id' => $loan->id.'-'.$bookInventory['id']
+                ];
+            }
+        }
+        $loanDetails = $loanDetailsTable->newEntities($loanDetailsData);
+        return $loanDetailsTable->saveMany($loanDetails);
+    }
+    
+    public function beforeMarshal (Event $event, \ArrayObject $data, \ArrayObject $options)
+    {
+        if (!isset($data['loan_date_start'])) {
+            $data['loan_date_start'] = date(Templates::DATE_FORMAT, time());
+        }
+        if (!isset($data['active_loan'])) {
+            $data['active_loan'] = true;
+        }
+    }
+    
     public function findExpiredLoans(Query $query, array $config)
     {
         return $query->where([
@@ -103,6 +134,4 @@ class LoansTable extends Table
                 'expired_loan' => true
         ])->orderAsc('loan_date_end');
     }
-    
-    
 }

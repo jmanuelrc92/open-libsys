@@ -11,11 +11,11 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property bool $active_loan
  * @property bool $expired_loan
- * @property \Cake\I18n\FrozenDate $loan_date_start
  * @property \Cake\I18n\FrozenDate $loan_date_end
+ * @property \Cake\I18n\FrozenDate $loan_date_start
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\BookInventory $book_inventory
+ * @property \App\Model\Entity\BookInventory[] $book_inventories
  */
 class Loan extends Entity
 {
@@ -33,10 +33,11 @@ class Loan extends Entity
         'user_id' => true,
         'active_loan' => true,
         'expired_loan' => true,
-        'loan_date_start' => true,
         'loan_date_end' => true,
+        'loan_date_start' => true,
         'user' => true,
-        'book_inventory' => true
+        'book_inventories' => true,
+        'id' => true
     ];
     
     protected function _getLoanDateStart($loan_date_start)
@@ -50,4 +51,5 @@ class Loan extends Entity
         $dateObject = date_create($loan_date_end);
         return date_format($dateObject, Templates::DATE_FORMAT);
     }
+    
 }
