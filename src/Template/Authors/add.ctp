@@ -21,11 +21,11 @@
 				<?php $this->Form->setTemplates($formTemplates) ?>
 				<?= $this->Form->create($author)?>
 				<?php
-                    echo $this->Form->control('first_name', [
+                    echo $this->Form->control('person.first_name', [
                         'class' => 'form-control',
                         'placeholder' => 'JOHN'
                     ]);
-                    echo $this->Form->control('last_name', [
+                    echo $this->Form->control('person.last_name', [
                         'class' => 'form-control',
                         'placeholder' => 'DOE'
                     ]);

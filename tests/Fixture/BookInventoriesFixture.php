@@ -21,6 +21,7 @@ class BookInventoriesFixture extends TestFixture
         'book_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'available' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'location_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'serial' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'deleted_at' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
@@ -41,19 +42,24 @@ class BookInventoriesFixture extends TestFixture
     // @codingStandardsIgnoreEnd
 
     /**
-     * Records
+     * Init method
      *
-     * @var array
+     * @return void
      */
-    public $records = [
-        [
-            'id' => 1,
-            'book_id' => 1,
-            'available' => 1,
-            'location_id' => 1,
-            'created' => '2018-04-04 23:30:26',
-            'modified' => '2018-04-04 23:30:26',
-            'deleted_at' => '2018-04-04 23:30:26'
-        ],
-    ];
+    public function init()
+    {
+        $this->records = [
+            [
+                'id' => 1,
+                'book_id' => 1,
+                'available' => 1,
+                'location_id' => 1,
+                'serial' => 'Lorem ipsum dolor ',
+                'created' => '2018-06-17 01:42:04',
+                'modified' => '2018-06-17 01:42:04',
+                'deleted_at' => '2018-06-17 01:42:04'
+            ],
+        ];
+        parent::init();
+    }
 }

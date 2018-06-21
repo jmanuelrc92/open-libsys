@@ -18,14 +18,7 @@ class LoansControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.loans',
         'app.users',
-        'app.people',
-        'app.authors',
-        'app.books',
-        'app.book_inventories',
-        'app.authors_books',
-        'app.publishing_houses',
-        'app.authors_publishing_houses',
-        'app.roles'
+        'app.loan_details'
     ];
 
     /**

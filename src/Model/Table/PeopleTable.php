@@ -63,27 +63,15 @@ class PeopleTable extends Table
 
         $validator
             ->scalar('first_name')
-            ->maxLength('first_name', 50)
+            ->maxLength('first_name', 150)
             ->requirePresence('first_name', 'create')
             ->notEmpty('first_name');
 
         $validator
-            ->scalar('middle_name')
-            ->maxLength('middle_name', 50)
-            ->requirePresence('middle_name', 'create')
-            ->allowEmpty('middle_name');
-
-        $validator
             ->scalar('last_name')
-            ->maxLength('last_name', 50)
+            ->maxLength('last_name', 150)
             ->requirePresence('last_name', 'create')
             ->notEmpty('last_name');
-
-        $validator
-            ->scalar('sur_name')
-            ->maxLength('sur_name', 50)
-            ->requirePresence('sur_name', 'create')
-            ->allowEmpty('sur_name');
 
         return $validator;
     }

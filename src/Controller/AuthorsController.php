@@ -21,12 +21,7 @@ class AuthorsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['People'],
-            'sortWhitelist' => [
-                'People.last_name',
-                'People.first_name',
-                'created'
-            ]
+            'contain' => ['People']
         ];
         $authors = $this->paginate($this->Authors);
 
@@ -55,25 +50,17 @@ class AuthorsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {        
+    {
         $author = $this->Authors->newEntity();
-        $peopleTable = TableRegistry::get('people');
-        $person = $peopleTable->newEntity();
         if ($this->request->is('post')) {
-            $person = $peopleTable->patchEntity($person, $this->request->getData());
-            $person = $peopleTable->save($person);
-            if($person) {
-                $author = $this->Authors->patchEntity($author, $this->request->getData());
-                $author->person_id = $person->id;
-                if ($this->Authors->save($author)) {
-                    $this->Flash->success(__('The author has been saved.'));
-                    
-                    return $this->redirect(['action' => 'index']);
-                }
+            $author = $this->Authors->patchEntity($author, $this->request->getData());
+            if ($this->Authors->save($author)) {
+                $this->Flash->success(__('The author has been saved.'));
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The author could not be saved. Please, try again.'));
         }
-        $this->set(compact('author'));
+        $this->set(compact('author'));        
     }
 
     /**
