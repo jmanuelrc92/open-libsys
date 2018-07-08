@@ -1,11 +1,14 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Datasource\EntityInterface;
 use Cake\Event\Event;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use ArrayObject;
+use Cake\ORM\TableRegistry;
 
 /**
  * LoanDetails Model
@@ -83,19 +86,11 @@ class LoanDetailsTable extends Table
         return $rules;
     }
     
-    public function beforeMarshal (Event $event, \ArrayObject $data, \ArrayObject $options)
-    {/*
-        foreach ($data['loan_details'] as $bookSerial) {
-            if ($bookSerial['serial'] != '') {
-                $bookInventoryId = $this->LoanDetails->BookInventories->findBySerial($bookSerial['serial'])->first()->id;
-                $loanDetails[] = [
-                        'book_inventory_id' => $bookInventoryId,
-                        'loan_id' => $data['loan_id'],
-                        'id' => $data['loan_id'].'-'.$bookInventoryId
-                ];
-            }
-        }
-        $data = $loanDetails;
-        */
+    public function afterSave(Event $event, EntityInterface $entity, ArrayObject $options)
+    {
+        $loan = TableRegistry::get('Loans')->get($entity->loan_id);
+        $bookInventory = $this->BookInventories->get($entity->book_inventory_id);
+        $bookInventory->available = $loan->active_loan;
+        $this->BookInventories->save($bookInventory);
     }
 }
