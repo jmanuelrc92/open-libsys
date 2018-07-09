@@ -98,23 +98,37 @@ class LoansTable extends Table
         return $rules;
     }
     
-    public function saveDetails(Loan $loan, array $data)
+    //2018-07-08 @jmrc92
+    //function that save the detail of bookInventories
+    public function saveDetails(Loan $loan, array $data, string $action)
     {
-        $bookInventoryTable = TableRegistry::get('BookInventories');
         $loanDetailsTable = TableRegistry::get('LoanDetails');
-        $loanDetailsData = [];
-        foreach ($data as $detail) {
-            if ($detail['serial'] != null) {
-                $bookInventory = $bookInventoryTable->findBySerial($detail['serial'])->first();
-                $loanDetailsData[] = [
+        $bookInventoryTable = TableRegistry::get('BookInventories');
+        //if the action that invokes the function is edit, just make the inventorie available again
+        if ($action == 'edit') {
+            foreach ($data as $loanDetail) {
+                $bookInventory = $bookInventoryTable->get($loanDetail['book_inventory_id']);
+                $bookInventory->available = !$loan->active_loan;
+                $bookInventoryTable->save($bookInventory);
+            }
+        } elseif ($action == 'add') {
+            //if the action is add, it fetch the inventories table to get the id, and make the relational table
+            //between inventories and detail
+            $bookInventoryTable = TableRegistry::get('BookInventories');
+            $loanDetailsData = [];
+            foreach ($data as $detail) {
+                if ($detail['serial'] != null) {
+                    $bookInventory = $bookInventoryTable->findBySerial($detail['serial'])->first();
+                    $loanDetailsData[] = [
                         'loan_id' => $loan->id,
                         'book_inventory_id' => $bookInventory['id'],
                         'id' => $loan->id.'-'.$bookInventory['id']
-                ];
+                    ];
+                }
             }
-        }
-        $loanDetails = $loanDetailsTable->newEntities($loanDetailsData);
-        return $loanDetailsTable->saveMany($loanDetails);
+            $loanDetails = $loanDetailsTable->newEntities($loanDetailsData);
+            return $loanDetailsTable->saveMany($loanDetails);
+        }        
     }
     
     public function beforeMarshal (Event $event, \ArrayObject $data, \ArrayObject $options)
@@ -127,6 +141,7 @@ class LoansTable extends Table
         }
     }
     
+    //2018-07-08 @jmrc92 custom finder for execute a query that fetch loans table for expiredloans
     public function findExpiredLoans(Query $query, array $config)
     {
         return $query->where([

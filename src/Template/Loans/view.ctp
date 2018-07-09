@@ -15,7 +15,7 @@
 </header>
 <section class="content">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Loan information</h3>
@@ -38,22 +38,32 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-8">
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">Book info</h3>
 				</div>
-				<div class="box-body">
-					<dl class="dl-horizontal">
-						<dt>Title:</dt>
-						<dd><?= $loan->book_inventory->book->title?></dd>
-						<dt>Serial:</dt>
-						<dd><?= $loan->book_inventory->serial?></dd>
-						<dt>ISBN code:</dt>
-						<dd><?= $loan->book_inventory->book->isbn_code?></dd>
-						<dt>Author:</dt>
-						<dd><?= $loan->book_inventory->book->author->person->formal_name?></dd>
-					</dl>
+				<div class="box-body table-responsive">
+					<table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Serial</th>
+                                <th scope="col">ISBN</th>
+                                <th scope="col">Author</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($loan->loan_details as $loanDetail): ?>
+                            <tr>
+                                <td><?= $loanDetail->book_inventory->book->title ?></td>
+                                <td><?= $loanDetail->book_inventory->serial?></td>
+                                <td><?= $loanDetail->book_inventory->book->isbn_code?></td>
+                                <td><?= $loanDetail->book_inventory->book->author->person->formal_name?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
 				</div>
 			</div>
 		</div>
