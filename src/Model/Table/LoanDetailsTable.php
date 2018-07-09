@@ -90,7 +90,7 @@ class LoanDetailsTable extends Table
     {
         $loan = TableRegistry::get('Loans')->get($entity->loan_id);
         $bookInventory = $this->BookInventories->get($entity->book_inventory_id);
-        $bookInventory->available = $loan->active_loan;
+        $bookInventory->available = !$loan->active_loan;
         $this->BookInventories->save($bookInventory);
     }
 }

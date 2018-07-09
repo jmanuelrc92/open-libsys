@@ -57,7 +57,7 @@
                             <?php foreach ($loan->loan_details as $loanDetail): ?>
                             <tr>
                                 <td><?= $loanDetail->book_inventory->book->title ?></td>
-                                <td><?= $loanDetail->book_inventory->book->serial?></td>
+                                <td><?= $loanDetail->book_inventory->serial?></td>
                                 <td><?= $loanDetail->book_inventory->book->isbn_code?></td>
                                 <td><?= $loanDetail->book_inventory->book->author->person->formal_name?></td>
                             </tr>

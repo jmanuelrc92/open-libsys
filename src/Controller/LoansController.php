@@ -56,7 +56,7 @@ class LoansController extends AppController
             $data = $this->request->getData();
             $loan = $this->Loans->patchEntity($loan, $data);
             if ($this->Loans->save($loan)) {
-                if ($this->Loans->saveDetails($loan, $data['loan_details'])) {
+                if ($this->Loans->saveDetails($loan, $data['loan_details'], 'add')) {
                     $this->Flash->success(__('The loan has been saved.'));
                     return $this->redirect(['action' => 'index']);
                 }
@@ -84,18 +84,21 @@ class LoansController extends AppController
     public function edit($id = null)
     {
         $loan = $this->Loans->get($id, [
-            'contain' => []
+            'contain' => ['LoanDetails.BookInventories.Books.Authors.People', 'Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $loan = $this->Loans->patchEntity($loan, $this->request->getData());
             if ($this->Loans->save($loan)) {
+                $this->Loans->saveDetails($loan, $loan->loan_details, 'edit');
                 $this->Flash->success(__('The loan has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The loan could not be saved. Please, try again.'));
         }
-        $users = $this->Loans->Users->find('list', ['limit' => 200]);
+        $users = $this->Loans->Users->find('list')
+        ->leftJoin('roles', 'roles.id = role_id')
+        ->where(['roles.role_name !=' => 'ADMIN']);
+        
         $this->set(compact('loan', 'users'));
     }
 
