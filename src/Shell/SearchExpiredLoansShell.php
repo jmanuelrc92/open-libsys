@@ -5,7 +5,10 @@ use Cake\Console\Shell;
 use Cake\ORM\TableRegistry;
 
 /**
+ * 2018-07-07 @jmrc92
  * SearchExpiredLoans shell command.
+ * This shell is the responsible of change the status of the loans, if the end date is before the actual date.
+ * The setup of the shell is planned to be a cronjob.
  */
 class SearchExpiredLoansShell extends Shell
 {
@@ -33,8 +36,8 @@ class SearchExpiredLoansShell extends Shell
     {
         $this->out($this->OptionParser->help());
         
-        $today = date('Y-m-d h:i:s');
-        
+        $today = date('Y-m-d');
+        //2018-07-07 @jmrc92 fetching the loans that the endDate is passed, taking reference of the actual date
         $pendantLoans = TableRegistry::get('loans')->find('all')
             ->update()
             ->set([
@@ -43,8 +46,7 @@ class SearchExpiredLoansShell extends Shell
             ->where([
             'active_loan' => true,
             'loan_date_end <' => $today
-        ])
-            ->execute();
+        ])->execute();
         
     }
     

@@ -5,6 +5,7 @@
  */
 $this->Form->setTemplates($formTemplates);
 ?>
+<?= $this->Html->css('/AdminLTE/plugins/datepicker/datepicker3.css', ['block' => 'css']); ?>
 <header class="content-header">
 	<h1>Loans</h1>
 	<?php
@@ -16,10 +17,18 @@ $this->Form->setTemplates($formTemplates);
 </header>
 <section class="content">
 	<div class="row">
-		<div class="col-md-12">
+		<?= $this->Form->create($loan)?>
+		<div class="col-md-3">
 			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Loan information</h3>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+						</button>
+					</div>
+				</div>
 				<div class="box-body">
-					<?= $this->Form->create($loan)?>
         				<?php
                             echo $this->Form->control('user_id', [
                                 'class' => 'form-control',
@@ -27,28 +36,10 @@ $this->Form->setTemplates($formTemplates);
                                 'label' => 'User',
                                 'empty' => 'Choose a user'
                             ]);
-                            echo $this->Form->control('book_inventory.serial', [
-                                'class' => 'form-control',
-                                'type' => 'text',
-                                'label' => 'Serial',
-                                'placeholder' => 'Type the book serial'
-                            ]);
-                            echo $this->Form->control('book_inventory.book.title', [
-                                'class' => 'form-control',
-                                'type' => 'text',
-                                'readonly' => true,
-                                'label' => 'Title'
-                            ]);
-                            echo $this->Form->control('book_inventory.book.isbn_code', [
-                                'class' => 'form-control',
-                                'type' => 'text',
-                                'readonly' => true,
-                                'label' => 'ISBN code'
-                            ]);
                             echo $this->Form->control('loan_date_end', [
-                                'class' => 'form-control',
+                                'class' => 'form-control datepicker',
                                 'type' => 'text',
-                                'placeholder' => 'YYYY-MM-DD hh:mm:ss'
+                                'placeholder' => 'YYYY-MM-DD'
                             ]);
                             echo $this->Form->control('active_loan', [
                                 'checked' => true,
@@ -58,9 +49,47 @@ $this->Form->setTemplates($formTemplates);
                         ?>
                     	<?= $this->Form->button('Save', ['class' => 'btn btn-success'])?>
                     	<?= $this->Html->link('Cancel', ['controller' => 'loans', 'action' => 'index'], ['class' => 'btn btn-default'])?>
-					<?= $this->Form->end()?>
 				</div>
 			</div>
 		</div>
+		<div class="col-md-9">
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Books |<small> Add book</small></h3>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+						</button>
+					</div>
+				</div>
+				<div class="box-body">
+					<?php
+					   echo $this->Form->control('loan_details.0.serial', [
+					           'class' => 'form-control',
+					           'type' => 'text',
+					           'label' => 'Serial',
+					           'placeholder' => 'Type a book serial'
+					   ]);
+					   echo $this->Form->control('loan_details.1.serial', [
+					           'class' => 'form-control',
+					           'type' => 'text',
+					           'label' => 'Serial',
+					           'placeholder' => 'Type a book serial'
+					   ]);
+					   echo $this->Form->control('loan_details.2.serial', [
+					           'class' => 'form-control',
+					           'type' => 'text',
+					           'label' => 'Serial',
+					           'placeholder' => 'Type a book serial'
+					   ]);
+					   ?>
+				</div>
+			</div>
+		</div>
+		<?= $this->Form->end()?>
 	</div>
 </section>
+<?= $this->Html->script([
+    '/AdminLTE/plugins/datepicker/bootstrap-datepicker',
+    'loans/add.js'], 
+    ['block' => 'scriptBottom']); ?>

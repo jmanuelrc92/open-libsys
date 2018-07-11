@@ -26,15 +26,8 @@ class BookInventoriesTableTest extends TestCase
     public $fixtures = [
         'app.book_inventories',
         'app.books',
-        'app.authors',
-        'app.people',
-        'app.users',
-        'app.roles',
-        'app.loans',
-        'app.authors_books',
-        'app.publishing_houses',
-        'app.authors_publishing_houses',
-        'app.locations'
+        'app.locations',
+        'app.loans'
     ];
 
     /**
@@ -87,6 +80,16 @@ class BookInventoriesTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test beforeMarshal method
+     *
+     * @return void
+     */
+    public function testBeforeMarshal()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
