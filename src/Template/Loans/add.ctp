@@ -5,6 +5,7 @@
  */
 $this->Form->setTemplates($formTemplates);
 ?>
+<?= $this->Html->css('/AdminLTE/plugins/datepicker/datepicker3.css', ['block' => 'css']); ?>
 <header class="content-header">
 	<h1>Loans</h1>
 	<?php
@@ -36,7 +37,7 @@ $this->Form->setTemplates($formTemplates);
                                 'empty' => 'Choose a user'
                             ]);
                             echo $this->Form->control('loan_date_end', [
-                                'class' => 'form-control',
+                                'class' => 'form-control datepicker',
                                 'type' => 'text',
                                 'placeholder' => 'YYYY-MM-DD'
                             ]);
@@ -88,3 +89,7 @@ $this->Form->setTemplates($formTemplates);
 		<?= $this->Form->end()?>
 	</div>
 </section>
+<?= $this->Html->script([
+    '/AdminLTE/plugins/datepicker/bootstrap-datepicker',
+    'loans/add.js'], 
+    ['block' => 'scriptBottom']); ?>
