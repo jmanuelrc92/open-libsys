@@ -71,7 +71,6 @@ $configure = [
      * Debug level
      */
     'debug' => false,
-
     /**
      * A random string used in security hashing methods.
      */
