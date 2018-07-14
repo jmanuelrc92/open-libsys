@@ -12,7 +12,7 @@
  * -> svn: via svn:ignore "app/Config/Environment/environment.local.php"
  */
 $configure = [
-    'debug' => true,
+    'debug' => false,
 
     'Datasources.default' => [
         'host' => 'localhost',
