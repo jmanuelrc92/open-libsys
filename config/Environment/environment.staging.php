@@ -6,7 +6,7 @@
  * Hash::merge(Configure::read(), Hash::expand($configure))
  */
 $configure = [
-    'debug' => true,
+    'debug' => false,
 
     'Datasources.default' => [
         'host' => 'ec2-54-83-204-6.compute-1.amazonaws.com',

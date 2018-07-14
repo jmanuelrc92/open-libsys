@@ -49,7 +49,8 @@ if (!defined('CACHE_PREFIX')) {
 $availableEnvironments = [
     'staging' => [
         'domain' => [
-            'jmrc-openlib.herokuapp.com'
+            'jmrc-openlib.herokuapp.com',
+            'https://jmrc-openlib.herokuapp.com'
         ],
         //'path' => [] (optional)
     ],
@@ -71,7 +72,6 @@ $configure = [
      * Debug level
      */
     'debug' => false,
-
     /**
      * A random string used in security hashing methods.
      */
