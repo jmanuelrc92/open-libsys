@@ -78,9 +78,7 @@ class AppController extends Controller
     {
         $this->viewBuilder()->setTheme('AdminLTE');
         $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
-        
         $user = $this->Auth->user();
-        $this->loadComponent('Auth');
         if (!is_null($user)) {
             $this->set('personName', $user['person']['informal_name']);
             $this->set('registrationDate', $user['created']);
