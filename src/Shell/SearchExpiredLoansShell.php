@@ -38,7 +38,7 @@ class SearchExpiredLoansShell extends Shell
         
         $today = date('Y-m-d');
         //2018-07-07 @jmrc92 fetching the loans that the endDate is passed, taking reference of the actual date
-        $pendantLoans = TableRegistry::get('loans')->find('all')
+        $pendantLoans = TableRegistry::getTableLocator()->get('loans')->find('all')
             ->update()
             ->set([
             'expired_loan' => true

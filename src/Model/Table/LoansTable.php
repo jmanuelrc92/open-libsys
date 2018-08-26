@@ -102,8 +102,8 @@ class LoansTable extends Table
     //function that save the detail of bookInventories
     public function saveDetails(Loan $loan, array $data, string $action)
     {
-        $loanDetailsTable = TableRegistry::get('LoanDetails');
-        $bookInventoryTable = TableRegistry::get('BookInventories');
+        $loanDetailsTable = TableRegistry::getTableLocator()->get('LoanDetails');
+        $bookInventoryTable = TableRegistry::getTableLocator()->get('BookInventories');
         //if the action that invokes the function is edit, just make the inventorie available again
         if ($action == 'edit') {
             foreach ($data as $loanDetail) {
@@ -114,7 +114,7 @@ class LoansTable extends Table
         } elseif ($action == 'add') {
             //if the action is add, it fetch the inventories table to get the id, and make the relational table
             //between inventories and detail
-            $bookInventoryTable = TableRegistry::get('BookInventories');
+            $bookInventoryTable = TableRegistry::getTableLocator()->get('BookInventories');
             $loanDetailsData = [];
             foreach ($data as $detail) {
                 if ($detail['serial'] != null) {

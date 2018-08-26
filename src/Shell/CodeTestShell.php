@@ -33,7 +33,7 @@ class CodeTestShell extends Shell
     public function main()
     {
         //$this->out($this->OptionParser->help());
-        $authorsTable = TableRegistry::get('authors');
+        $authorsTable = TableRegistry::getTableLocator()->get('authors');
         $authors = $authorsTable->find('withFormalName', []);
         $this->out(json_encode($authors));
     }

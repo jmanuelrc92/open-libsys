@@ -8,7 +8,7 @@
 	<h1>Authors</h1>
 	<?php
 	   $this->Breadcrumbs->add('Authors', ['controller' => 'authors', 'action' => 'index'], ['templateVars' => ['icon' => '<i class="fa fa-dashboard" aria-hidden="true"></i>']]);
-	   $this->Breadcrumbs->templates($breadcrumbsTemplates);
+	   $this->Breadcrumbs->setTemplates($breadcrumbsTemplates);
 	   echo $this->Breadcrumbs->render(['class' => 'breadcrumb']);
 	?>
 </header>

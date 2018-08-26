@@ -42,7 +42,9 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler');
+        $this->loadComponent('RequestHandler', [
+            'enableBeforeRedirect' => false
+        ]);
         $this->loadComponent('Flash');
         /*
          * Enable the following components for recommended CakePHP security settings.
@@ -78,6 +80,7 @@ class AppController extends Controller
         $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
         
         $user = $this->Auth->user();
+        $this->loadComponent('Auth');
         if (!is_null($user)) {
             $this->set('personName', $user['person']['informal_name']);
             $this->set('registrationDate', $user['created']);

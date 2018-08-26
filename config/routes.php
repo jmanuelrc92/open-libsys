@@ -42,7 +42,22 @@ use Cake\Routing\Route\DashedRoute;
  *
  */
 Router::defaultRouteClass(DashedRoute::class);
-
+/*
+Router::scope('/', function (RouteBuilder $routes) {
+    $routes->connect('/login', [
+        'controller' => 'users',
+        'action' => 'login'
+    ]);
+    $routes->connect('/logout', [
+        'controller' => 'users', 
+        'action' => 'logout'
+    ]);
+    //2018-08-26 @jmrc92 general routes
+    $routes->connect(
+        '/:controller/:action/:id'
+    )->setPaterns(['id' => '[0-9]+');
+});
+*/
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -76,9 +91,3 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class);
 });
-
-/**
- * Load all plugin routes. See the Plugin documentation on
- * how to customize the loading of plugin routes.
- */
-Plugin::routes();
