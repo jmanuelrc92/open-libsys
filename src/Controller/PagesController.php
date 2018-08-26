@@ -78,7 +78,7 @@ class PagesController extends AppController
                 'loan_date_end'
             ]
         ];
-        $expiredLoans = $this->paginate(TableRegistry::get('loans')->find('expiredLoans', []));
+        $expiredLoans = $this->paginate(TableRegistry::getTableLocator()->get('loans')->find('expiredLoans', []));
         $this->set(compact('expiredLoans'));
     }
 }

@@ -84,7 +84,7 @@ class UsersController extends AppController
             'contain' =>  ['People']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $peopleTable = TableRegistry::get('People');
+            $peopleTable = TableRegistry::getTableLocator()->get('People');
             $data = $this->request->getData();
             $person = $peopleTable->get($user->person_id);
             $user = $this->Users->patchEntity($user, $this->request->getData());

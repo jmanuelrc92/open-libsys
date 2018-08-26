@@ -39,7 +39,7 @@ class BookInventoriesTableTest extends TestCase
     {
         parent::setUp();
         $config = TableRegistry::exists('BookInventories') ? [] : ['className' => BookInventoriesTable::class];
-        $this->BookInventories = TableRegistry::get('BookInventories', $config);
+        $this->BookInventories = TableRegistry::getTableLocator()->get('BookInventories', $config);
     }
 
     /**

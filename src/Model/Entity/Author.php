@@ -38,7 +38,7 @@ class Author extends Entity
     
     protected function _getFormalName()
     {
-        $person = TableRegistry::get('people')->get($this->person_id);
+        $person = TableRegistry::getTableLocator()->get('people')->get($this->person_id);
         return $person->formal_name;
     }
 }

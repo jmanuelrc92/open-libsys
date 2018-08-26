@@ -10,7 +10,7 @@ $this->Form->setTemplates($formTemplates);
 	<?php
     	$this->Breadcrumbs->add('Books', ['controller' => 'books', 'action' => 'index'], ['templateVars' => ['icon' => '<i class="fa fa-dashboard" aria-hidden="true"></i>']]);
     	$this->Breadcrumbs->add('Edit');
-    	$this->Breadcrumbs->templates($breadcrumbsTemplates);
+    	$this->Breadcrumbs->setTemplates($breadcrumbsTemplates);
     	echo $this->Breadcrumbs->render(['class' => 'breadcrumb']);
 	?>
 </header>

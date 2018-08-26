@@ -8,7 +8,7 @@
 	<h1>Publishing Houses</h1>
 	<?php
 	   $this->Breadcrumbs->add('Publishing house', ['controller' => 'publishing_houses', 'action' => 'index'], ['templateVars' => ['icon' => '<i class="fa fa-dashboard" aria-hidden="true"></i>']]);
-	   $this->Breadcrumbs->templates($breadcrumbsTemplates);
+	   $this->Breadcrumbs->setTemplates($breadcrumbsTemplates);
 	   echo $this->Breadcrumbs->render(['class' => 'breadcrumb']);
 	?>
 </header>

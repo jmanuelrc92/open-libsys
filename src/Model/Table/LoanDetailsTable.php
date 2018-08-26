@@ -88,7 +88,7 @@ class LoanDetailsTable extends Table
     
     public function afterSave(Event $event, EntityInterface $entity, ArrayObject $options)
     {
-        $loan = TableRegistry::get('Loans')->get($entity->loan_id);
+        $loan = TableRegistry::getTableLocator()->get('Loans')->get($entity->loan_id);
         $bookInventory = $this->BookInventories->get($entity->book_inventory_id);
         $bookInventory->available = !$loan->active_loan;
         $this->BookInventories->save($bookInventory);

@@ -15,7 +15,7 @@ $this->Breadcrumbs->add('Locations', [
         'icon' => '<i class="fa fa-dashboard" aria-hidden="true"></i>'
     ]
 ]);
-$this->Breadcrumbs->templates($breadcrumbsTemplates);
+$this->Breadcrumbs->setTemplates($breadcrumbsTemplates);
 echo $this->Breadcrumbs->render([
     'class' => 'breadcrumb'
 ]);
