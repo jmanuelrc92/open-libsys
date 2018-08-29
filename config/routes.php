@@ -18,7 +18,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
@@ -42,6 +41,12 @@ use Cake\Routing\Route\DashedRoute;
  *
  */
 Router::defaultRouteClass(DashedRoute::class);
+
+Router::prefix('api', function (RouteBuilder $routes) {
+    $routes->setExtensions(['json', 'xml']);
+    $routes->resources('Locations');
+});
+
 /*
 Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/login', [
@@ -58,6 +63,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     )->setPaterns(['id' => '[0-9]+');
 });
 */
+
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
