@@ -49,4 +49,10 @@ class Application extends BaseApplication
 
         return $middlewareQueue;
     }
+    
+   public function bootstrap ()
+   {
+       parent::bootstrap();
+       $this->addPlugin('Crud');
+   }
 }
