@@ -24,8 +24,8 @@ class AppController extends Controller
                 'Crud.Add'
             ],
             'listeners' => [
-                'Crud.Api',
-                'Crud.ApiPagination',
+                'CrudJsonApi.JsonApi',
+                'CrudJsonApi.Pagination',
                 'Crud.ApiQueryLog'
             ]
         ]);
