@@ -1,17 +1,17 @@
 <?php
 namespace App\Controller\Api;
 
-class LocationsController extends ApiAppController
+class PublishingHousesController extends ApiAppController
 {
     public $paginate = [
         'page' => 1,
         'limit' => 20,
         'maxLimit' => 30,
         'fields' => [
-            'id', 'location_name', 'location_code'
+            'id', 'publishing_house_name'
         ],
         'sortWhitelist' => [
-            'id', 'location_name', 'location_code'
+            'id', 'publishing_house_name'
         ]
     ];
 }

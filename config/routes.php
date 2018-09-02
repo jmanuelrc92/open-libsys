@@ -44,25 +44,12 @@ Router::defaultRouteClass(DashedRoute::class);
 
 Router::prefix('api', function (RouteBuilder $routes) {
     $routes->setExtensions(['json', 'xml']);
+    $routes->resources('Authors');
+    $routes->resources('Books');
     $routes->resources('Locations');
+    $routes->resources('People');
+    $routes->resources('PublishingHouses', ['path' => 'editorials']);
 });
-
-/*
-Router::scope('/', function (RouteBuilder $routes) {
-    $routes->connect('/login', [
-        'controller' => 'users',
-        'action' => 'login'
-    ]);
-    $routes->connect('/logout', [
-        'controller' => 'users', 
-        'action' => 'logout'
-    ]);
-    //2018-08-26 @jmrc92 general routes
-    $routes->connect(
-        '/:controller/:action/:id'
-    )->setPaterns(['id' => '[0-9]+');
-});
-*/
 
 Router::scope('/', function (RouteBuilder $routes) {
     /**

@@ -4,7 +4,7 @@ namespace App\Controller\Api;
 use Cake\Controller\Controller;
 use Crud\Controller\ControllerTrait;
 
-class AppController extends Controller
+class ApiAppController extends Controller
 {
     use ControllerTrait;
     
@@ -18,17 +18,17 @@ class AppController extends Controller
         $this->loadComponent('Crud.Crud', [
             'actions' => [
                 'Crud.Index',
-                'Crud.Update',
-                'Crud.View',
-                'Crud.Delete',
-                'Crud.Add'
+                'Crud.View'
+                //'Crud.Update',
+                //'Crud.Delete',
+                //'Crud.Add'
             ],
             'listeners' => [
                 'CrudJsonApi.JsonApi',
                 'CrudJsonApi.Pagination',
-                'Crud.ApiQueryLog'
+                'Crud.RelatedModels'
             ]
         ]);
-        //$this->loadComponent('Flash');
     }
+    
 }
